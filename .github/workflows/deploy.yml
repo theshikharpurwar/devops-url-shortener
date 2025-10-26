@@ -89,20 +89,50 @@ jobs:
         run: |
           ssh -i ~/.ssh/gce-key -o StrictHostKeyChecking=no "${GCE_SSH_USERNAME}@${INSTANCE_IP}" <<EOF
           set -e
-          echo "Authenticating Docker with Artifact Registry..."
+          
+          echo "=== Starting MongoDB if not running ==="
+          if ! docker ps --format '{{.Names}}' | grep -q '^url-shortener-mongo$'; then
+            echo "Starting MongoDB container..."
+            docker run -d \
+              --name url-shortener-mongo \
+              --restart unless-stopped \
+              -v mongodb-data:/data/db \
+              mongo:7.0-jammy
+            echo "Waiting for MongoDB to initialize..."
+            sleep 10
+          else
+            echo "MongoDB already running"
+          fi
+          
+          echo "=== Authenticating Docker with Artifact Registry ==="
           gcloud auth configure-docker ${REGION}-docker.pkg.dev --quiet
-          echo "Pulling image: ${IMAGE_URI}"
+          
+          echo "=== Pulling image: ${IMAGE_URI} ==="
           docker pull "${IMAGE_URI}"
-          echo "Stopping old container..."
+          
+          echo "=== Stopping old application container ==="
           docker stop url-shortener || true
           docker rm url-shortener || true
-          echo "Starting new container..."
+          
+          echo "=== Starting new application container ==="
           docker run \
             --detach \
             --name url-shortener \
             --restart unless-stopped \
+            --link url-shortener-mongo:mongo \
             -p 8001:8001 \
+            -e NODE_ENV=production \
+            -e PORT=8001 \
+            -e MONGO_URL=mongodb://mongo:27017/url-shortener \
             "${IMAGE_URI}"
-          echo "Deployment complete!"
-          docker ps --filter "name=url-shortener"
+          
+          echo "=== Waiting for application to start ==="
+          sleep 5
+          
+          echo "=== Deployment complete! ==="
+          echo "Application containers:"
+          docker ps --filter "name=url-shortener" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+          
+          echo "=== Health check ==="
+          curl -f http://localhost:8001/health || echo "Health check failed (app may still be starting)"
           EOF
