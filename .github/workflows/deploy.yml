@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - gcp-actions-cicd
   workflow_dispatch:
 
 concurrency:
