@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener - DevOps Project</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #666;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+        }
+
+        input[type="url"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="url"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+
+        .result h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .short-url {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            color: #667eea;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .copy-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 10px;
+            white-space: nowrap;
+        }
+
+        .copy-btn:hover {
+            background: #5568d3;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fee;
+            border-radius: 10px;
+            border-left: 4px solid #f44;
+            color: #c33;
+        }
+
+        .info {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .info h4 {
+            color: #0c5460;
+            margin-bottom: 10px;
+        }
+
+        .info p {
+            color: #0c5460;
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔗 URL Shortener</h1>
+        <p class="subtitle">DevOps CI/CD Pipeline Project <span class="badge">Phase 1</span></p>
+
+        <form action="/url" method="POST" id="urlForm">
+            <div class="form-group">
+                <label for="url">Enter your long URL:</label>
+                <input 
+                    type="url" 
+                    id="url" 
+                    name="url" 
+                    placeholder="https://example.com/very/long/url/here"
+                    required
+                >
+            </div>
+            <button type="submit">✨ Shorten URL</button>
+        </form>
+
+        <% if (shortUrl) { %>
+        <div class="result">
+            <h3>✅ Success! Your shortened URL:</h3>
+            <div class="short-url">
+                <span id="shortUrlText"><%= shortUrl %></span>
+                <button class="copy-btn" onclick="copyToClipboard()">📋 Copy</button>
+            </div>
+        </div>
+        <% } %>
+
+        <% if (error) { %>
+        <div class="error">
+            <strong>❌ Error:</strong> <%= error %>
+        </div>
+        <% } %>
+
+        <div class="info">
+            <h4>📊 API Endpoints</h4>
+            <p><strong>POST /url</strong> - Create short URL</p>
+            <p><strong>GET /:shortId</strong> - Redirect to original URL</p>
+            <p><strong>GET /url/analytics/:shortId</strong> - Get analytics</p>
+            <p><strong>GET /health</strong> - Health check</p>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard() {
+            const text = document.getElementById('shortUrlText').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = event.target;
+                const originalText = btn.innerText;
+                btn.innerText = '✅ Copied!';
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                }, 2000);
+            });
+        }
+
+        // Handle form submission with fetch for better UX
+        document.getElementById('urlForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const urlInput = document.getElementById('url');
+            const url = urlInput.value;
+
+            try {
+                const response = await fetch('/url', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ url }),
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Reload page to show result
+                    window.location.href = '/?success=' + encodeURIComponent(data.shortUrl);
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            } catch (error) {
+                alert('Error: ' + error.message);
+            }
+        });
+
+        // Show success message if redirected with success parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const successUrl = urlParams.get('success');
+        if (successUrl) {
+            const container = document.querySelector('.container');
+            const resultDiv = document.createElement('div');
+            resultDiv.className = 'result';
+            resultDiv.innerHTML = `
+                <h3>✅ Success! Your shortened URL:</h3>
+                <div class="short-url">
+                    <span id="shortUrlText">${successUrl}</span>
+                    <button class="copy-btn" onclick="copyToClipboard()">📋 Copy</button>
+                </div>
+            `;
+            container.insertBefore(resultDiv, document.querySelector('.info'));
+        }
+    </script>
+</body>
+</html>

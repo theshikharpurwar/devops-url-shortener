@@ -1,0 +1,341 @@
+---
+# ========================================
+# Ansible Playbook: Configure Jenkins Server
+# Target: Self-configuration (localhost)
+# ========================================
+
+- name: Configure Jenkins CI/CD Server
+  hosts: localhost
+  connection: local
+  become: true
+  gather_facts: true
+
+  vars:
+    docker_apt_gpg_key: https://download.docker.com/linux/ubuntu/gpg
+    docker_apt_repository: "deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    jenkins_apt_key: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    jenkins_apt_repository: "deb https://pkg.jenkins.io/debian-stable binary/"
+    kubectl_version: "stable"
+
+  tasks:
+    # ========================================
+    # System Updates and Prerequisites
+    # ========================================
+
+    - name: Update apt cache
+      ansible.builtin.apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      tags:
+        - system
+        - prerequisites
+
+    - name: Install prerequisite packages
+      ansible.builtin.apt:
+        name:
+          - openjdk-17-jdk
+          - ca-certificates
+          - curl
+          - gnupg
+          - unzip
+          - git
+          - apt-transport-https
+          - software-properties-common
+          - python3-pip
+        state: present
+        update_cache: yes
+      tags:
+        - prerequisites
+
+    # ========================================
+    # Docker Installation
+    # ========================================
+
+    - name: Create directory for Docker GPG key
+      ansible.builtin.file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+      tags:
+        - docker
+
+    - name: Add Docker GPG key
+      ansible.builtin.shell: |
+        curl -fsSL {{ docker_apt_gpg_key }} | gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+        chmod a+r /etc/apt/keyrings/docker.gpg
+      args:
+        creates: /etc/apt/keyrings/docker.gpg
+      tags:
+        - docker
+
+    - name: Add Docker apt repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        state: present
+        filename: docker
+      tags:
+        - docker
+
+    - name: Install Docker packages
+      ansible.builtin.apt:
+        name:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: present
+        update_cache: yes
+      tags:
+        - docker
+
+    - name: Ensure Docker service is started and enabled
+      ansible.builtin.systemd:
+        name: docker
+        state: started
+        enabled: yes
+      tags:
+        - docker
+
+    - name: Verify Docker installation
+      ansible.builtin.command: docker --version
+      register: docker_version
+      changed_when: false
+      tags:
+        - docker
+        - verify
+
+    - name: Display Docker version
+      ansible.builtin.debug:
+        msg: "Docker installed: {{ docker_version.stdout }}"
+      tags:
+        - docker
+        - verify
+
+    # ========================================
+    # Jenkins Installation
+    # ========================================
+
+    - name: Add Jenkins GPG key
+      ansible.builtin.shell: |
+        curl -fsSL {{ jenkins_apt_key }} | gpg --dearmor -o /usr/share/keyrings/jenkins-keyring.gpg
+      args:
+        creates: /usr/share/keyrings/jenkins-keyring.gpg
+      tags:
+        - jenkins
+
+    - name: Add Jenkins apt repository
+      ansible.builtin.apt_repository:
+        repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.gpg] {{ jenkins_apt_repository }}"
+        state: present
+        filename: jenkins
+      tags:
+        - jenkins
+
+    - name: Install Jenkins
+      ansible.builtin.apt:
+        name: jenkins
+        state: present
+        update_cache: yes
+      tags:
+        - jenkins
+
+    - name: Ensure Jenkins service is started and enabled
+      ansible.builtin.systemd:
+        name: jenkins
+        state: started
+        enabled: yes
+      tags:
+        - jenkins
+
+    - name: Wait for Jenkins to start up
+      ansible.builtin.wait_for:
+        port: 8080
+        delay: 10
+        timeout: 60
+      tags:
+        - jenkins
+
+    # ========================================
+    # kubectl Installation
+    # ========================================
+
+    - name: Download kubectl binary
+      ansible.builtin.get_url:
+        url: "https://dl.k8s.io/release/{{ kubectl_version }}/bin/linux/amd64/kubectl"
+        dest: /tmp/kubectl
+        mode: '0755'
+      tags:
+        - kubectl
+
+    - name: Move kubectl to /usr/local/bin
+      ansible.builtin.copy:
+        src: /tmp/kubectl
+        dest: /usr/local/bin/kubectl
+        mode: '0755'
+        remote_src: yes
+      tags:
+        - kubectl
+
+    - name: Verify kubectl installation
+      ansible.builtin.command: kubectl version --client
+      register: kubectl_version_output
+      changed_when: false
+      tags:
+        - kubectl
+        - verify
+
+    - name: Display kubectl version
+      ansible.builtin.debug:
+        msg: "kubectl installed: {{ kubectl_version_output.stdout }}"
+      tags:
+        - kubectl
+        - verify
+
+    # ========================================
+    # AWS CLI Installation
+    # ========================================
+
+    - name: Check if AWS CLI is already installed
+      ansible.builtin.command: aws --version
+      register: aws_cli_check
+      ignore_errors: yes
+      changed_when: false
+      tags:
+        - awscli
+
+    - name: Download AWS CLI v2
+      ansible.builtin.get_url:
+        url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+        dest: /tmp/awscliv2.zip
+        mode: '0644'
+      when: aws_cli_check.rc != 0
+      tags:
+        - awscli
+
+    - name: Unarchive AWS CLI package
+      ansible.builtin.unarchive:
+        src: /tmp/awscliv2.zip
+        dest: /tmp/
+        remote_src: yes
+      when: aws_cli_check.rc != 0
+      tags:
+        - awscli
+
+    - name: Install AWS CLI
+      ansible.builtin.command: /tmp/aws/install
+      args:
+        creates: /usr/local/bin/aws
+      when: aws_cli_check.rc != 0
+      tags:
+        - awscli
+
+    - name: Verify AWS CLI installation
+      ansible.builtin.command: aws --version
+      register: aws_version
+      changed_when: false
+      tags:
+        - awscli
+        - verify
+
+    - name: Display AWS CLI version
+      ansible.builtin.debug:
+        msg: "AWS CLI installed: {{ aws_version.stdout }}"
+      tags:
+        - awscli
+        - verify
+
+    # ========================================
+    # User and Permission Configuration
+    # ========================================
+
+    - name: Grant Jenkins user Docker permissions
+      ansible.builtin.user:
+        name: jenkins
+        groups: docker
+        append: yes
+      tags:
+        - permissions
+
+    - name: Restart Jenkins to apply group changes
+      ansible.builtin.systemd:
+        name: jenkins
+        state: restarted
+      tags:
+        - permissions
+
+    - name: Wait for Jenkins to restart
+      ansible.builtin.wait_for:
+        port: 8080
+        delay: 5
+        timeout: 60
+      tags:
+        - permissions
+
+    # ========================================
+    # Jenkins Initial Admin Password
+    # ========================================
+
+    - name: Wait for initial admin password file to be created
+      ansible.builtin.wait_for:
+        path: /var/lib/jenkins/secrets/initialAdminPassword
+        state: present
+        timeout: 60
+      tags:
+        - jenkins
+        - password
+
+    - name: Get Jenkins initial admin password
+      ansible.builtin.shell: cat /var/lib/jenkins/secrets/initialAdminPassword
+      register: jenkins_initial_password
+      changed_when: false
+      tags:
+        - jenkins
+        - password
+
+    - name: Display Jenkins initial admin password
+      ansible.builtin.debug:
+        msg: |
+          ========================================
+          🎉 JENKINS CONFIGURATION COMPLETE! 🎉
+          ========================================
+          
+          Jenkins Initial Admin Password:
+          {{ jenkins_initial_password.stdout }}
+          
+          Access Jenkins at:
+          http://{{ ansible_default_ipv4.address }}:8080
+          
+          ========================================
+          SAVE THIS PASSWORD - You'll need it for first-time setup!
+          ========================================
+      tags:
+        - jenkins
+        - password
+
+    # ========================================
+    # Final Verification
+    # ========================================
+
+    - name: Create verification summary
+      ansible.builtin.debug:
+        msg: |
+          ========================================
+          ✅ INSTALLATION SUMMARY
+          ========================================
+          Java:       {{ ansible_facts['distribution'] }} {{ ansible_facts['distribution_version'] }}
+          Docker:     {{ docker_version.stdout }}
+          Jenkins:    Installed and running on port 8080
+          kubectl:    {{ kubectl_version_output.stdout_lines[0] }}
+          AWS CLI:    {{ aws_version.stdout }}
+          ========================================
+          Next Steps:
+          1. Access Jenkins UI at http://{{ ansible_default_ipv4.address }}:8080
+          2. Use the initial admin password shown above
+          3. Complete Jenkins setup wizard
+          4. Install recommended plugins
+          5. Create your first admin user
+          ========================================
+      tags:
+        - verify
+        - summary
