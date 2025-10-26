@@ -29,14 +29,8 @@ app.get('/', (req, res) => {
   });
 });
 
-// API routes
+// API routes for URL shortening
 app.use('/url', urlRoute);
-
-// Redirect route (must be last)
-app.get('/:shortId', async (req, res, next) => {
-  // This will be handled by the url route
-  next();
-});
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -45,6 +39,35 @@ app.get('/health', (req, res) => {
     message: 'Server is running',
     timestamp: new Date().toISOString()
   });
+});
+
+// Redirect route - must be after other routes
+const URL = require('./src/models/url');
+app.get('/:shortId', async (req, res) => {
+  try {
+    const shortId = req.params.shortId;
+    const entry = await URL.findOneAndUpdate(
+      { shortId },
+      {
+        $push: {
+          visitHistory: {
+            timestamp: Date.now(),
+          },
+        },
+        $inc: { clickCount: 1 },
+      },
+      { new: true }
+    );
+
+    if (!entry) {
+      return res.status(404).json({ error: 'Short URL not found' });
+    }
+
+    res.redirect(entry.redirectURL);
+  } catch (error) {
+    console.error('Redirect error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
 });
 
 // 404 handler
