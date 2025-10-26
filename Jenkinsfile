@@ -105,7 +105,7 @@ pipeline {
         
         stage('Cleanup') {
             steps {
-                echo '=== Cleaning up old images ===
+                echo '=== Cleaning up old images ==='
                 script {
                     sh """
                         # Simple cleanup - only remove dangling images
