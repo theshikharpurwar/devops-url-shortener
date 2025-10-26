@@ -8,9 +8,12 @@ const shortid = require('shortid');
  */
 async function handleGenerateNewShortURL(req, res) {
   const { url } = req.body;
+  
+  console.log('Received URL shortening request:', { url, body: req.body });
 
   // Validate URL
   if (!url) {
+    console.log('Validation failed: URL is required');
     return res.status(400).json({ 
       error: 'URL is required',
       success: false 
@@ -22,15 +25,19 @@ async function handleGenerateNewShortURL(req, res) {
     // Add protocol if missing
     let urlToValidate = url.trim();
     if (!urlToValidate.match(/^https?:\/\//i)) {
+      console.log('Adding https:// protocol to URL');
       urlToValidate = 'https://' + urlToValidate;
     }
     new URL(urlToValidate);
+    
+    console.log('URL validated successfully:', urlToValidate);
     
     // Use the validated URL (with protocol if added)
     const finalUrl = urlToValidate;
     
     // Generate short ID
     const shortId = shortid.generate();
+    console.log('Generated short ID:', shortId);
 
     // Create new URL entry
     await URL.create({
@@ -38,6 +45,8 @@ async function handleGenerateNewShortURL(req, res) {
       redirectURL: finalUrl,
       visitHistory: [],
     });
+    
+    console.log('URL entry created successfully');
 
     // Return success response
     return res.status(201).json({
@@ -47,7 +56,7 @@ async function handleGenerateNewShortURL(req, res) {
       originalUrl: finalUrl
     });
   } catch (error) {
-    console.error('Error generating short URL:', error);
+    console.error('Error in handleGenerateNewShortURL:', error);
     return res.status(400).json({ 
       error: 'Invalid URL format. Please enter a valid URL.',
       success: false,
