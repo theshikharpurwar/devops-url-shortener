@@ -17,12 +17,17 @@ async function handleGenerateNewShortURL(req, res) {
     });
   }
 
-  // Validate URL format
+  // Validate URL format - be more permissive
   try {
-    new URL(url);
+    // Add protocol if missing
+    let urlToValidate = url;
+    if (!url.match(/^https?:\/\//i)) {
+      urlToValidate = 'https://' + url;
+    }
+    new URL(urlToValidate);
   } catch (error) {
     return res.status(400).json({ 
-      error: 'Invalid URL format',
+      error: 'Invalid URL format. Please enter a valid URL.',
       success: false 
     });
   }
