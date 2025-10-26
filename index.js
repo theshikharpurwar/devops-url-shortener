@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const helmet = require('helmet');
+const rateLimit = require('express-rate-limit');
 require('dotenv').config();
 const connectToMongoDB = require('./src/connect');
 const urlRoute = require('./src/routes/url');
@@ -11,6 +13,23 @@ const MONGO_URL = process.env.MONGO_URL || 'mongodb://mongo:27017/url-shortener'
 
 // Connect to MongoDB
 connectToMongoDB(MONGO_URL);
+
+// Security middleware
+app.use(helmet({
+  contentSecurityPolicy: false, // Allow inline scripts for EJS
+}));
+
+// Rate limiting
+const createUrlLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 10, // Limit each IP to 10 URL creations per windowMs
+  message: { 
+    error: 'Too many URLs created from this IP, please try again later.',
+    success: false 
+  },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 // Middleware
 app.use(express.json());
@@ -29,8 +48,8 @@ app.get('/', (req, res) => {
   });
 });
 
-// API routes for URL shortening
-app.use('/url', urlRoute);
+// API routes for URL shortening (with rate limiting)
+app.use('/url', createUrlLimiter, urlRoute);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -42,11 +61,11 @@ app.get('/health', (req, res) => {
 });
 
 // Redirect route - must be after other routes
-const URL = require('./src/models/url');
+const UrlModel = require('./src/models/url');
 app.get('/:shortId', async (req, res) => {
   try {
     const shortId = req.params.shortId;
-    const entry = await URL.findOneAndUpdate(
+    const entry = await UrlModel.findOneAndUpdate(
       { shortId },
       {
         $push: {

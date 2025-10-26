@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const shortid = require('shortid');
 
 /**
  * URL Schema
@@ -11,7 +10,6 @@ const urlSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
-      default: shortid.generate,
     },
     redirectURL: {
       type: String,
@@ -38,9 +36,7 @@ const urlSchema = new mongoose.Schema(
   }
 );
 
-// Index for faster lookups
-urlSchema.index({ shortId: 1 });
-
+// Create model
 const URL = mongoose.model('URL', urlSchema);
 
 module.exports = URL;
