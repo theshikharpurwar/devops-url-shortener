@@ -46,6 +46,15 @@ resource "aws_security_group" "jenkins" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  # Application access on port 8001
+  ingress {
+    description = "URL Shortener Application"
+    from_port   = 8001
+    to_port     = 8001
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   # Allow communication with EKS cluster
   ingress {
     description = "Allow from VPC"

@@ -12,7 +12,8 @@ pipeline {
         
         // Application Configuration
         APP_NAME = 'url-shortener'
-        APP_PORT = '3000'
+        APP_PORT = '8001'
+        MONGO_CONTAINER = 'url-shortener-mongo'
     }
     
     stages {
@@ -69,14 +70,26 @@ pipeline {
                 echo '=== Deploying application ==='
                 script {
                     sh """
-                        # Stop and remove old container if exists
+                        # Start MongoDB container if not running
+                        docker ps -q -f name=${MONGO_CONTAINER} || \
+                        docker run -d \
+                            --name ${MONGO_CONTAINER} \
+                            --restart unless-stopped \
+                            -p 27017:27017 \
+                            mongo:7.0-jammy
+                        
+                        # Wait for MongoDB to be ready
+                        sleep 5
+                        
+                        # Stop and remove old app container if exists
                         docker stop ${APP_NAME} || true
                         docker rm ${APP_NAME} || true
                         
-                        # Run new container
+                        # Run new app container linked to MongoDB
                         docker run -d \
                             --name ${APP_NAME} \
                             --restart unless-stopped \
+                            --link ${MONGO_CONTAINER}:mongo \
                             -p ${APP_PORT}:${APP_PORT} \
                             ${ECR_REGISTRY}/${ECR_REPOSITORY}:latest
                     """
