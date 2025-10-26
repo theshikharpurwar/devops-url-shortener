@@ -1,14 +1,16 @@
-name: Deploy to Google Compute Engine
+name: CI/CD Pipeline
 
 on:
   push:
     branches:
       - main
-      - gcp-actions-cicd
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 concurrency:
-  group: deploy-${{ github.ref_name }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 env:
@@ -16,21 +18,11 @@ env:
   NODE_VERSION: '18'
 
 jobs:
-  build-and-deploy:
+  # Build and test job - runs on all PRs and pushes
+  build-and-test:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      id-token: write
-    env:
-      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
-      REGION: ${{ secrets.GCP_REGION }}
-      ARTIFACT_REPOSITORY: ${{ secrets.GCP_ARTIFACT_REPO }}
-      IMAGE_TAG: ${{ github.sha }}
-      GCE_INSTANCE_NAME: ${{ secrets.GCE_INSTANCE_NAME }}
-      GCE_ZONE: ${{ secrets.GCE_ZONE }}
-      GCE_SSH_USERNAME: ${{ secrets.GCE_SSH_USERNAME }}
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Use Node.js ${{ env.NODE_VERSION }}
@@ -44,6 +36,57 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Build Docker image (verification)
+        if: github.event_name == 'pull_request'
+        run: docker build -t ${{ env.IMAGE_NAME }}:pr-${{ github.event.number }} .
+
+      - name: PR Check Summary
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "✅ Dependencies installed successfully!"
+          echo "✅ Tests passed!"
+          echo "✅ Docker image builds successfully!"
+          echo ""
+          echo "🎉 This PR is ready to merge!"
+          echo "Deployment will trigger automatically upon merge to main."
+
+  # Deploy job - only runs on push to main (including merged PRs)
+  deploy:
+    needs: build-and-test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      REGION: ${{ secrets.GCP_REGION }}
+      ARTIFACT_REPOSITORY: ${{ secrets.GCP_ARTIFACT_REPO }}
+      IMAGE_TAG: ${{ github.sha }}
+      GCE_INSTANCE_NAME: ${{ secrets.GCE_INSTANCE_NAME }}
+      GCE_ZONE: ${{ secrets.GCE_ZONE }}
+      GCE_SSH_USERNAME: ${{ secrets.GCE_SSH_USERNAME }}
+    steps:
+  # Deploy job - only runs on push to main (including merged PRs)
+  deploy:
+    needs: build-and-test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      REGION: ${{ secrets.GCP_REGION }}
+      ARTIFACT_REPOSITORY: ${{ secrets.GCP_ARTIFACT_REPO }}
+      IMAGE_TAG: ${{ github.sha }}
+      GCE_INSTANCE_NAME: ${{ secrets.GCE_INSTANCE_NAME }}
+      GCE_ZONE: ${{ secrets.GCE_ZONE }}
+      GCE_SSH_USERNAME: ${{ secrets.GCE_SSH_USERNAME }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Authenticate to Google Cloud
         uses: google-github-actions/auth@v2
