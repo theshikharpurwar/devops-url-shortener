@@ -1,154 +1,306 @@
-# DevOps URL Shortener - Phase 1: Local Development
+# ⚡ Shorty - URL Shortener# DevOps URL Shortener - Phase 1: Local Development
 
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+
+
+A lightning-fast, modern URL shortener with a beautiful UI and analytics tracking.[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+
 [![Docker](https://img.shields.io/badge/Docker-20+-blue.svg)](https://www.docker.com/)
-[![MongoDB](https://img.shields.io/badge/MongoDB-Latest-green.svg)](https://www.mongodb.com/)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-> **End-to-End DevOps Pipeline Project** - A complete URL shortener application with containerization, built for learning CI/CD, Kubernetes, AWS, and Infrastructure as Code.
+[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)[![MongoDB](https://img.shields.io/badge/MongoDB-Latest-green.svg)](https://www.mongodb.com/)
 
----
+[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 📋 Table of Contents
+[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-green.svg)](https://www.mongodb.com/)
 
-- [Project Overview](#-project-overview)
-- [Phase 1: Local Development](#-phase-1-local-development-current)
-- [Prerequisites](#-prerequisites)
-- [Quick Start](#-quick-start)
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)> **End-to-End DevOps Pipeline Project** - A complete URL shortener application with containerization, built for learning CI/CD, Kubernetes, AWS, and Infrastructure as Code.
+
+
+
+## ✨ Features---
+
+
+
+- 🚀 **Lightning Fast** - Instant URL shortening## 📋 Table of Contents
+
+- 🎨 **Modern UI** - Beautiful, animated interface
+
+- 📊 **Analytics** - Track clicks and visit history- [Project Overview](#-project-overview)
+
+- 🔒 **Secure** - Rate limiting and security headers- [Phase 1: Local Development](#-phase-1-local-development-current)
+
+- 🐳 **Docker Ready** - One command to run- [Prerequisites](#-prerequisites)
+
+- 📱 **Responsive** - Works on all devices- [Quick Start](#-quick-start)
+
 - [Project Structure](#-project-structure)
-- [API Documentation](#-api-documentation)
+
+## 🚀 Quick Start- [API Documentation](#-api-documentation)
+
 - [Testing the Application](#-testing-the-application)
-- [Troubleshooting](#-troubleshooting)
+
+### Prerequisites- [Troubleshooting](#-troubleshooting)
+
 - [Next Phases](#-next-phases)
 
----
+- Docker & Docker Compose
 
-## 🎯 Project Overview
+- Git---
 
-This is a **complete DevOps project** designed to demonstrate the full software development lifecycle with modern DevOps practices. We're building a URL shortener application and deploying it through a professional CI/CD pipeline.
 
-### The Complete Journey (4 Phases)
+
+### Run Locally## 🎯 Project Overview
+
+
+
+```bashThis is a **complete DevOps project** designed to demonstrate the full software development lifecycle with modern DevOps practices. We're building a URL shortener application and deploying it through a professional CI/CD pipeline.
+
+# Clone the repository
+
+git clone https://github.com/theshikharpurwar/devops-url-shortener.git### The Complete Journey (4 Phases)
+
+cd devops-url-shortener
 
 | Phase | Focus | Tools | Status |
-|-------|-------|-------|--------|
-| **Phase 1** | **Local Development** | Node.js, MongoDB, Docker, Docker Compose | ✅ **COMPLETE** |
+
+# Start the application|-------|-------|-------|--------|
+
+docker-compose up -d| **Phase 1** | **Local Development** | Node.js, MongoDB, Docker, Docker Compose | ✅ **COMPLETE** |
+
 | **Phase 2** | **Infrastructure as Code** | Terraform, AWS (VPC, EKS, ECR, DocumentDB) | ✅ **COMPLETE** |
-| **Phase 3** | **Configuration Management** | Ansible, Jenkins Setup | ✅ **COMPLETE** |
-| **Phase 4** | **CI/CD Pipeline & Deployment** | Jenkins, Kubernetes, AWS EKS | ✅ **COMPLETE** |
 
-**Current Status**: 🟢 **Phase 4 - Complete Pipeline Deployed!**
+# Access at http://localhost:8001| **Phase 3** | **Configuration Management** | Ansible, Jenkins Setup | ✅ **COMPLETE** |
 
----
+```| **Phase 4** | **CI/CD Pipeline & Deployment** | Jenkins, Kubernetes, AWS EKS | ✅ **COMPLETE** |
 
-## 🚀 Phase 1: Local Development
 
-In this phase, you will:
 
-✅ Get a fully functional Node.js URL shortener application  
-✅ Containerize the application using Docker  
+That's it! 🎉**Current Status**: 🟢 **Phase 4 - Complete Pipeline Deployed!**
+
+
+
+## 🎯 Usage---
+
+
+
+### Web Interface## 🚀 Phase 1: Local Development
+
+
+
+1. Open http://localhost:8001 in your browserIn this phase, you will:
+
+2. Enter a long URL
+
+3. Click "Shorten Now!"✅ Get a fully functional Node.js URL shortener application  
+
+4. Copy and share your shortened URL✅ Containerize the application using Docker  
+
 ✅ Run the entire stack locally with Docker Compose  
-✅ Test all API endpoints  
+
+### API Endpoints✅ Test all API endpoints  
+
 ✅ Understand the codebase before moving to cloud deployment  
 
-### ➡️ Next: Phase 2 - Infrastructure as Code
+#### Create Short URL
 
-See **[terraform/README.md](terraform/README.md)** or **[terraform/QUICKSTART.md](terraform/QUICKSTART.md)**  
+```bash### ➡️ Next: Phase 2 - Infrastructure as Code
 
----
+curl -X POST http://localhost:8001/url \
 
-## ⚙️ Prerequisites
+  -H "Content-Type: application/json" \See **[terraform/README.md](terraform/README.md)** or **[terraform/QUICKSTART.md](terraform/QUICKSTART.md)**  
 
-### 1️⃣ Windows 11 Setup (CRITICAL)
+  -d '{"url": "https://example.com/long/url"}'
+
+```---
+
+
+
+#### Get Analytics## ⚙️ Prerequisites
+
+```bash
+
+curl http://localhost:8001/url/analytics/{shortId}### 1️⃣ Windows 11 Setup (CRITICAL)
+
+```
 
 Since you're on Windows 11, you **MUST** use **WSL 2** for this project. Follow these steps:
 
-#### **Step 1: Install WSL 2**
-Open PowerShell as Administrator and run:
-```powershell
+#### Health Check
+
+```bash#### **Step 1: Install WSL 2**
+
+curl http://localhost:8001/healthOpen PowerShell as Administrator and run:
+
+``````powershell
+
 wsl --install
-```
 
-Restart your computer, then verify:
-```powershell
-wsl --list --verbose
-```
+## 📁 Project Structure```
 
-You should see `VERSION 2` for Ubuntu.
 
-📖 **Detailed Instructions**: See [SETUP-WSL2.md](./SETUP-WSL2.md) for complete WSL 2 setup.
 
-#### **Step 2: Install Docker Desktop**
+```Restart your computer, then verify:
+
+├── src/```powershell
+
+│   ├── models/         # MongoDB schemaswsl --list --verbose
+
+│   ├── controllers/    # Business logic```
+
+│   └── routes/         # API routes
+
+├── views/              # Frontend templatesYou should see `VERSION 2` for Ubuntu.
+
+├── index.js            # Server entry point
+
+├── Dockerfile          # Container definition📖 **Detailed Instructions**: See [SETUP-WSL2.md](./SETUP-WSL2.md) for complete WSL 2 setup.
+
+└── docker-compose.yml  # Multi-container setup
+
+```#### **Step 2: Install Docker Desktop**
+
 1. Download from: https://www.docker.com/products/docker-desktop/
-2. Install with **WSL 2 backend enabled**
-3. In Docker Desktop Settings:
-   - ✅ Enable "Use the WSL 2 based engine"
-   - ✅ Enable WSL Integration with Ubuntu
 
-#### **Step 3: Install VS Code + WSL Extension**
-1. Install VS Code: https://code.visualstudio.com/
+## 🛠️ Technology Stack2. Install with **WSL 2 backend enabled**
+
+3. In Docker Desktop Settings:
+
+- **Backend**: Node.js + Express   - ✅ Enable "Use the WSL 2 based engine"
+
+- **Database**: MongoDB   - ✅ Enable WSL Integration with Ubuntu
+
+- **Frontend**: EJS + CSS3 (Animated gradients)
+
+- **Security**: Helmet.js + Rate limiting#### **Step 3: Install VS Code + WSL Extension**
+
+- **Containerization**: Docker + Docker Compose1. Install VS Code: https://code.visualstudio.com/
+
 2. Install the **WSL** extension (by Microsoft)
-3. Open VS Code and connect to WSL:
+
+## 🔒 Security Features3. Open VS Code and connect to WSL:
+
    - Press `F1` → Type `WSL: Connect to WSL`
 
-### 2️⃣ Required Software (Inside WSL 2)
+- ✅ Helmet.js security headers
 
-Open your WSL 2 terminal (Ubuntu) in VS Code and verify:
+- ✅ Rate limiting (10 URLs per 15 minutes per IP)### 2️⃣ Required Software (Inside WSL 2)
 
-```bash
+- ✅ Input validation
+
+- ✅ URL sanitizationOpen your WSL 2 terminal (Ubuntu) in VS Code and verify:
+
+
+
+## 📊 Analytics```bash
+
 # Check Docker
-docker --version
-docker-compose --version
 
-# Check Git
-git --version
+Track your shortened URLs with:docker --version
+
+- Total click countdocker-compose --version
+
+- Visit history with timestamps
+
+- User agent information# Check Git
+
+- IP addressesgit --version
+
 ```
+
+## 🛑 Stopping the App
 
 If anything is missing, refer to [SETUP-WSL2.md](./SETUP-WSL2.md).
 
----
+```bash
+
+docker-compose down---
+
+```
 
 ## 🏁 Quick Start
 
+## 🐛 Troubleshooting
+
 ### Step 1: Navigate to Project Directory
 
-**Important**: In WSL 2, your Windows drives are mounted under `/mnt/`:
+**Port already in use?**
 
-```bash
-# Navigate to your project
-cd /mnt/d/devops-url-shortener
+```bash**Important**: In WSL 2, your Windows drives are mounted under `/mnt/`:
 
-# Verify you're in the right place
-pwd
-ls -la
+# Change the port in docker-compose.yml
+
+ports:```bash
+
+  - "8002:8001"  # Change 8001 to 8002# Navigate to your project
+
+```cd /mnt/d/devops-url-shortener
+
+
+
+**MongoDB connection issues?**# Verify you're in the right place
+
+```bashpwd
+
+docker-compose down -vls -la
+
+docker-compose up -d```
+
 ```
 
 You should see files like `package.json`, `Dockerfile`, `docker-compose.yml`, etc.
 
+## 📝 Environment Variables
+
 ### Step 2: Build and Run with Docker Compose
 
-Run the following command in your WSL 2 terminal:
+Create a `.env` file (optional):
 
-```bash
-docker-compose up --build
-```
+```envRun the following command in your WSL 2 terminal:
 
-**What happens:**
+PORT=8001
+
+MONGO_URL=mongodb://mongo:27017/url-shortener```bash
+
+NODE_ENV=productiondocker-compose up --build
+
+``````
+
+
+
+## 🤝 Contributing**What happens:**
+
 - Docker builds the Node.js application image
-- Downloads MongoDB image (if not already cached)
-- Starts both `api` and `mongo` services
-- Creates a network for inter-service communication
-- Sets up persistent volumes for MongoDB data
 
-**Expected Output:**
+Contributions are welcome! Feel free to:- Downloads MongoDB image (if not already cached)
+
+- Report bugs- Starts both `api` and `mongo` services
+
+- Suggest features- Creates a network for inter-service communication
+
+- Submit pull requests- Sets up persistent volumes for MongoDB data
+
+
+
+## 📄 License**Expected Output:**
+
 ```
-url-shortener-mongo    | waiting for connections on port 27017
+
+MIT License - feel free to use this project for learning and development!url-shortener-mongo    | waiting for connections on port 27017
+
 url-shortener-api      | ✅ MongoDB Connected Successfully
-url-shortener-api      | 🚀 Server started on port 8001
+
+## 🙏 Acknowledgmentsurl-shortener-api      | 🚀 Server started on port 8001
+
 ```
+
+Built as a DevOps learning project with modern best practices.
 
 ### Step 3: Access the Application
 
+---
+
 Open your browser and go to:
+
+Made with ❤️ by [Shikhar Purwar](https://github.com/theshikharpurwar) | 2025
 
 ```
 http://localhost:8001
