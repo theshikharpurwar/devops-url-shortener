@@ -70,16 +70,21 @@ pipeline {
                 echo '=== Deploying application ==='
                 script {
                     sh """
-                        # Start MongoDB container if not running
-                        docker ps -q -f name=${MONGO_CONTAINER} || \
-                        docker run -d \
-                            --name ${MONGO_CONTAINER} \
-                            --restart unless-stopped \
-                            -p 27017:27017 \
-                            mongo:7.0-jammy
-                        
-                        # Wait for MongoDB to be ready
-                        sleep 5
+                        # Check if MongoDB container exists and is running
+                        if ! docker ps -q -f name=${MONGO_CONTAINER} | grep -q .; then
+                            echo "Starting MongoDB container..."
+                            docker run -d \
+                                --name ${MONGO_CONTAINER} \
+                                --restart unless-stopped \
+                                -p 27017:27017 \
+                                mongo:7.0-jammy
+                            
+                            # Wait for MongoDB to be ready
+                            echo "Waiting for MongoDB to start..."
+                            sleep 10
+                        else
+                            echo "MongoDB container already running"
+                        fi
                         
                         # Stop and remove old app container if exists
                         docker stop ${APP_NAME} || true
