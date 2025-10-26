@@ -1,4 +1,4 @@
-const URL = require('../models/url');
+const UrlModel = require('../models/url');
 const shortid = require('shortid');
 
 /**
@@ -37,7 +37,7 @@ async function handleGenerateNewShortURL(req, res) {
     const shortId = shortid.generate();
 
     // Create new URL entry
-    await URL.create({
+    await UrlModel.create({
       shortId: shortId,
       redirectURL: url,
       visitHistory: [],
@@ -69,7 +69,7 @@ async function handleRedirect(req, res) {
 
   try {
     // Find URL and update analytics
-    const entry = await URL.findOneAndUpdate(
+    const entry = await UrlModel.findOneAndUpdate(
       { shortId },
       {
         $push: {
@@ -111,7 +111,7 @@ async function handleGetAnalytics(req, res) {
   const shortId = req.params.shortId;
 
   try {
-    const entry = await URL.findOne({ shortId });
+    const entry = await UrlModel.findOne({ shortId });
 
     if (!entry) {
       return res.status(404).json({ 
