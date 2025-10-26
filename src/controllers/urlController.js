@@ -8,9 +8,12 @@ const shortid = require('shortid');
  */
 async function handleGenerateNewShortURL(req, res) {
   const { url } = req.body;
+  
+  console.log('Received URL shortening request:', { url, body: req.body });
 
   // Validate URL
   if (!url) {
+    console.log('Validation failed: URL is required');
     return res.status(400).json({ 
       error: 'URL is required',
       success: false 
@@ -20,41 +23,44 @@ async function handleGenerateNewShortURL(req, res) {
   // Validate URL format - be more permissive
   try {
     // Add protocol if missing
-    let urlToValidate = url;
-    if (!url.match(/^https?:\/\//i)) {
-      urlToValidate = 'https://' + url;
+    let urlToValidate = url.trim();
+    if (!urlToValidate.match(/^https?:\/\//i)) {
+      console.log('Adding https:// protocol to URL');
+      urlToValidate = 'https://' + urlToValidate;
     }
     new URL(urlToValidate);
-  } catch (error) {
-    return res.status(400).json({ 
-      error: 'Invalid URL format. Please enter a valid URL.',
-      success: false 
-    });
-  }
-
-  try {
+    
+    console.log('URL validated successfully:', urlToValidate);
+    
+    // Use the validated URL (with protocol if added)
+    const finalUrl = urlToValidate;
+    
     // Generate short ID
     const shortId = shortid.generate();
+    console.log('Generated short ID:', shortId);
 
     // Create new URL entry
     await UrlModel.create({
       shortId: shortId,
-      redirectURL: url,
+      redirectURL: finalUrl,
       visitHistory: [],
     });
+    
+    console.log('URL entry created successfully');
 
     // Return success response
     return res.status(201).json({
       success: true,
       id: shortId,
       shortUrl: `${req.protocol}://${req.get('host')}/${shortId}`,
-      originalUrl: url
+      originalUrl: finalUrl
     });
   } catch (error) {
-    console.error('Error generating short URL:', error);
-    return res.status(500).json({ 
-      error: 'Internal server error',
-      success: false 
+    console.error('Error in handleGenerateNewShortURL:', error);
+    return res.status(400).json({ 
+      error: 'Invalid URL format. Please enter a valid URL.',
+      success: false,
+      details: error.message
     });
   }
 }

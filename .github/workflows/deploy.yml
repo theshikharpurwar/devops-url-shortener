@@ -1,0 +1,138 @@
+name: Deploy to Google Compute Engine
+
+on:
+  push:
+    branches:
+      - main
+      - gcp-actions-cicd
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref_name }}
+  cancel-in-progress: true
+
+env:
+  IMAGE_NAME: url-shortener
+  NODE_VERSION: '18'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+      REGION: ${{ secrets.GCP_REGION }}
+      ARTIFACT_REPOSITORY: ${{ secrets.GCP_ARTIFACT_REPO }}
+      IMAGE_TAG: ${{ github.sha }}
+      GCE_INSTANCE_NAME: ${{ secrets.GCE_INSTANCE_NAME }}
+      GCE_ZONE: ${{ secrets.GCE_ZONE }}
+      GCE_SSH_USERNAME: ${{ secrets.GCE_SSH_USERNAME }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests
+        run: npm test
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+
+      - name: Configure Docker for Artifact Registry
+        run: gcloud auth configure-docker ${REGION}-docker.pkg.dev --quiet
+
+      - name: Compose Artifact Registry image URI
+        run: |
+          IMAGE_URI="${REGION}-docker.pkg.dev/${PROJECT_ID}/${ARTIFACT_REPOSITORY}/${IMAGE_NAME}:${IMAGE_TAG}"
+          echo "IMAGE_URI=${IMAGE_URI}" >> $GITHUB_ENV
+
+      - name: Build Docker image
+        run: docker build -t "${IMAGE_URI}" .
+
+      - name: Push Docker image
+        run: docker push "${IMAGE_URI}"
+
+      - name: Prepare SSH key
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "${{ secrets.GCE_SSH_PRIVATE_KEY }}" > ~/.ssh/gce-key
+          chmod 600 ~/.ssh/gce-key
+
+      - name: Capture instance IP address
+        run: |
+          INSTANCE_IP=$(gcloud compute instances describe "${GCE_INSTANCE_NAME}" --zone "${GCE_ZONE}" --format='get(networkInterfaces[0].accessConfigs[0].natIP)')
+          if [ -z "${INSTANCE_IP}" ]; then
+            echo "Instance ${GCE_INSTANCE_NAME} does not have an external IP." >&2
+            exit 1
+          fi
+          echo "INSTANCE_IP=${INSTANCE_IP}" >> $GITHUB_ENV
+
+      - name: Deploy container to Compute Engine
+        run: |
+          ssh -i ~/.ssh/gce-key -o StrictHostKeyChecking=no "${GCE_SSH_USERNAME}@${INSTANCE_IP}" <<EOF
+          set -e
+          
+          echo "=== Starting MongoDB if not running ==="
+          if ! docker ps --format '{{.Names}}' | grep -q '^url-shortener-mongo$'; then
+            echo "Starting MongoDB container..."
+            docker run -d \
+              --name url-shortener-mongo \
+              --restart unless-stopped \
+              -v mongodb-data:/data/db \
+              mongo:7.0-jammy
+            echo "Waiting for MongoDB to initialize..."
+            sleep 10
+          else
+            echo "MongoDB already running"
+          fi
+          
+          echo "=== Authenticating Docker with Artifact Registry ==="
+          gcloud auth configure-docker ${REGION}-docker.pkg.dev --quiet
+          
+          echo "=== Pulling image: ${IMAGE_URI} ==="
+          docker pull "${IMAGE_URI}"
+          
+          echo "=== Stopping old application container ==="
+          docker stop url-shortener || true
+          docker rm url-shortener || true
+          
+          echo "=== Starting new application container ==="
+          docker run \
+            --detach \
+            --name url-shortener \
+            --restart unless-stopped \
+            --link url-shortener-mongo:mongo \
+            -p 8001:8001 \
+            -e NODE_ENV=production \
+            -e PORT=8001 \
+            -e MONGO_URL=mongodb://mongo:27017/url-shortener \
+            "${IMAGE_URI}"
+          
+          echo "=== Waiting for application to start ==="
+          sleep 5
+          
+          echo "=== Deployment complete! ==="
+          echo "Application containers:"
+          docker ps --filter "name=url-shortener" --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+          
+          echo "=== Health check ==="
+          curl -f http://localhost:8001/health || echo "Health check failed (app may still be starting)"
+          EOF
