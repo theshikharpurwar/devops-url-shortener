@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL Shortener - DevOps Project</title>
+    <title>Shorty - Lightning Fast URL Shortener ⚡</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,190 +15,374 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Floating shapes animation */
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.3;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .shape1 {
+            width: 300px;
+            height: 300px;
+            background: #ff6b6b;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .shape2 {
+            width: 200px;
+            height: 200px;
+            background: #4ecdc4;
+            top: 60%;
+            right: 10%;
+            animation-delay: 5s;
+        }
+
+        .shape3 {
+            width: 250px;
+            height: 250px;
+            background: #ffe66d;
+            bottom: 10%;
+            left: 40%;
+            animation-delay: 10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(50px, -50px) rotate(120deg); }
+            66% { transform: translate(-50px, 50px) rotate(240deg); }
         }
 
         .container {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 600px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.3);
+            max-width: 650px;
             width: 100%;
+            position: relative;
+            z-index: 10;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .logo-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 4em;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         h1 {
-            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 10px;
-            font-size: 2.5em;
+            font-size: 3em;
             text-align: center;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
         .subtitle {
             color: #666;
             text-align: center;
-            margin-bottom: 30px;
-            font-size: 0.9em;
+            margin-bottom: 40px;
+            font-size: 1.1em;
+            font-weight: 300;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         label {
             display: block;
-            margin-bottom: 8px;
-            color: #555;
+            margin-bottom: 12px;
+            color: #333;
             font-weight: 600;
+            font-size: 0.95em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-wrapper {
+            position: relative;
         }
 
         input[type="url"] {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
+            padding: 18px 20px;
+            border: 3px solid transparent;
+            background: linear-gradient(white, white) padding-box,
+                        linear-gradient(135deg, #667eea, #764ba2) border-box;
+            border-radius: 15px;
             font-size: 16px;
-            transition: border-color 0.3s;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
         }
 
         input[type="url"]:focus {
             outline: none;
-            border-color: #667eea;
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
         }
 
-        button {
+        input[type="url"]::placeholder {
+            color: #aaa;
+        }
+
+        .shorten-btn {
             width: 100%;
-            padding: 15px;
+            padding: 18px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 15px;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
         }
 
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        .shorten-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
-        button:active {
-            transform: translateY(0);
+        .shorten-btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .shorten-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .shorten-btn:active {
+            transform: translateY(-1px);
         }
 
         .result {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
+            margin-top: 35px;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 20px;
+            border: 2px solid rgba(102, 126, 234, 0.2);
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .result h3 {
             color: #333;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            font-size: 1.1em;
         }
 
         .short-url {
             background: white;
-            padding: 15px;
-            border-radius: 8px;
+            padding: 18px 20px;
+            border-radius: 12px;
             word-break: break-all;
             font-family: 'Courier New', monospace;
-            color: #667eea;
             font-weight: 600;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .short-url-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 1.1em;
         }
 
         .copy-btn {
-            background: #667eea;
+            background: linear-gradient(135deg, #23a6d5 0%, #23d5ab 100%);
             color: white;
             border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
+            padding: 12px 24px;
+            border-radius: 10px;
             cursor: pointer;
             font-size: 14px;
-            margin-left: 10px;
+            font-weight: 600;
             white-space: nowrap;
+            transition: all 0.3s ease;
         }
 
         .copy-btn:hover {
-            background: #5568d3;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(35, 166, 213, 0.4);
+        }
+
+        .copy-btn.copied {
+            background: linear-gradient(135deg, #23d5ab 0%, #23a6d5 100%);
         }
 
         .error {
-            margin-top: 20px;
-            padding: 15px;
-            background: #fee;
-            border-radius: 10px;
-            border-left: 4px solid #f44;
-            color: #c33;
-        }
-
-        .info {
-            background: #e8f4f8;
+            margin-top: 25px;
             padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
-            border-left: 4px solid #17a2b8;
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.1) 0%, rgba(255, 75, 75, 0.1) 100%);
+            border-radius: 15px;
+            border: 2px solid rgba(255, 75, 75, 0.3);
+            color: #d63031;
+            font-weight: 500;
+            animation: shake 0.5s ease;
         }
 
-        .info h4 {
-            color: #0c5460;
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .features {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 20px;
+            background: rgba(102, 126, 234, 0.05);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .feature:hover {
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 2.5em;
             margin-bottom: 10px;
         }
 
-        .info p {
-            color: #0c5460;
-            margin: 5px 0;
-            font-size: 14px;
+        .feature-text {
+            color: #555;
+            font-size: 0.85em;
+            font-weight: 600;
         }
 
-        .badge {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            margin-left: 10px;
+        @media (max-width: 600px) {
+            .container {
+                padding: 35px 25px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            .short-url {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .copy-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
+    <div class="shape shape1"></div>
+    <div class="shape shape2"></div>
+    <div class="shape shape3"></div>
+
     <div class="container">
-        <h1>🔗 URL Shortener</h1>
-        <p class="subtitle">DevOps CI/CD Pipeline Project <span class="badge">Phase 1</span></p>
+        <div class="logo-container">
+            <div class="logo">⚡</div>
+        </div>
+        <h1>Shorty</h1>
+        <p class="subtitle">Lightning-fast URL shortening made simple</p>
 
         <form action="/url" method="POST" id="urlForm">
             <div class="form-group">
-                <label for="url">Enter your long URL:</label>
-                <input 
-                    type="url" 
-                    id="url" 
-                    name="url" 
-                    placeholder="https://example.com/very/long/url/here"
-                    required
-                >
+                <label for="url">🌐 Enter Your Long URL</label>
+                <div class="input-wrapper">
+                    <input 
+                        type="url" 
+                        id="url" 
+                        name="url" 
+                        placeholder="https://example.com/your/very/long/url/goes/here"
+                        required
+                        autocomplete="off"
+                    >
+                </div>
             </div>
-            <button type="submit">✨ Shorten URL</button>
+            <button type="submit" class="shorten-btn">
+                <span style="position: relative; z-index: 1;">✨ Shorten Now!</span>
+            </button>
         </form>
 
         <% if (shortUrl) { %>
         <div class="result">
-            <h3>✅ Success! Your shortened URL:</h3>
+            <h3>🎉 Success! Your shortened URL:</h3>
             <div class="short-url">
-                <span id="shortUrlText"><%= shortUrl %></span>
+                <span class="short-url-text" id="shortUrlText"><%= shortUrl %></span>
                 <button class="copy-btn" onclick="copyToClipboard()">📋 Copy</button>
             </div>
         </div>
@@ -203,16 +390,23 @@
 
         <% if (error) { %>
         <div class="error">
-            <strong>❌ Error:</strong> <%= error %>
+            <strong>⚠️ Oops!</strong> <%= error %>
         </div>
         <% } %>
 
-        <div class="info">
-            <h4>📊 API Endpoints</h4>
-            <p><strong>POST /url</strong> - Create short URL</p>
-            <p><strong>GET /:shortId</strong> - Redirect to original URL</p>
-            <p><strong>GET /url/analytics/:shortId</strong> - Get analytics</p>
-            <p><strong>GET /health</strong> - Health check</p>
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-text">Lightning Fast</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <div class="feature-text">Secure</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📊</div>
+                <div class="feature-text">Analytics</div>
+            </div>
         </div>
     </div>
 
@@ -221,10 +415,12 @@
             const text = document.getElementById('shortUrlText').innerText;
             navigator.clipboard.writeText(text).then(() => {
                 const btn = event.target;
-                const originalText = btn.innerText;
-                btn.innerText = '✅ Copied!';
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✅ Copied!';
+                btn.classList.add('copied');
                 setTimeout(() => {
-                    btn.innerText = originalText;
+                    btn.innerHTML = originalText;
+                    btn.classList.remove('copied');
                 }, 2000);
             });
         }
@@ -234,6 +430,11 @@
             e.preventDefault();
             const urlInput = document.getElementById('url');
             const url = urlInput.value;
+            const btn = e.target.querySelector('.shorten-btn');
+            const originalText = btn.innerHTML;
+            
+            btn.innerHTML = '<span style="position: relative; z-index: 1;">⏳ Shortening...</span>';
+            btn.disabled = true;
 
             try {
                 const response = await fetch('/url', {
@@ -247,13 +448,16 @@
                 const data = await response.json();
 
                 if (data.success) {
-                    // Reload page to show result
                     window.location.href = '/?success=' + encodeURIComponent(data.shortUrl);
                 } else {
-                    alert('Error: ' + data.error);
+                    alert('❌ Error: ' + data.error);
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
                 }
             } catch (error) {
-                alert('Error: ' + error.message);
+                alert('❌ Error: ' + error.message);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
             }
         });
 
@@ -261,17 +465,17 @@
         const urlParams = new URLSearchParams(window.location.search);
         const successUrl = urlParams.get('success');
         if (successUrl) {
-            const container = document.querySelector('.container');
+            const form = document.querySelector('#urlForm');
             const resultDiv = document.createElement('div');
             resultDiv.className = 'result';
             resultDiv.innerHTML = `
-                <h3>✅ Success! Your shortened URL:</h3>
+                <h3>🎉 Success! Your shortened URL:</h3>
                 <div class="short-url">
-                    <span id="shortUrlText">${successUrl}</span>
+                    <span class="short-url-text" id="shortUrlText">${successUrl}</span>
                     <button class="copy-btn" onclick="copyToClipboard()">📋 Copy</button>
                 </div>
             `;
-            container.insertBefore(resultDiv, document.querySelector('.info'));
+            form.insertAdjacentElement('afterend', resultDiv);
         }
     </script>
 </body>
