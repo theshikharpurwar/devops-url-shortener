@@ -20,26 +20,22 @@ async function handleGenerateNewShortURL(req, res) {
   // Validate URL format - be more permissive
   try {
     // Add protocol if missing
-    let urlToValidate = url;
-    if (!url.match(/^https?:\/\//i)) {
-      urlToValidate = 'https://' + url;
+    let urlToValidate = url.trim();
+    if (!urlToValidate.match(/^https?:\/\//i)) {
+      urlToValidate = 'https://' + urlToValidate;
     }
     new URL(urlToValidate);
-  } catch (error) {
-    return res.status(400).json({ 
-      error: 'Invalid URL format. Please enter a valid URL.',
-      success: false 
-    });
-  }
-
-  try {
+    
+    // Use the validated URL (with protocol if added)
+    const finalUrl = urlToValidate;
+    
     // Generate short ID
     const shortId = shortid.generate();
 
     // Create new URL entry
     await URL.create({
       shortId: shortId,
-      redirectURL: url,
+      redirectURL: finalUrl,
       visitHistory: [],
     });
 
@@ -48,13 +44,14 @@ async function handleGenerateNewShortURL(req, res) {
       success: true,
       id: shortId,
       shortUrl: `${req.protocol}://${req.get('host')}/${shortId}`,
-      originalUrl: url
+      originalUrl: finalUrl
     });
   } catch (error) {
     console.error('Error generating short URL:', error);
-    return res.status(500).json({ 
-      error: 'Internal server error',
-      success: false 
+    return res.status(400).json({ 
+      error: 'Invalid URL format. Please enter a valid URL.',
+      success: false,
+      details: error.message
     });
   }
 }
