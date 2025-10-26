@@ -88,13 +88,21 @@ jobs:
       - name: Deploy container to Compute Engine
         run: |
           ssh -i ~/.ssh/gce-key -o StrictHostKeyChecking=no "${GCE_SSH_USERNAME}@${INSTANCE_IP}" <<EOF
+          set -e
+          echo "Authenticating Docker with Artifact Registry..."
+          gcloud auth configure-docker ${REGION}-docker.pkg.dev --quiet
+          echo "Pulling image: ${IMAGE_URI}"
           docker pull "${IMAGE_URI}"
+          echo "Stopping old container..."
           docker stop url-shortener || true
           docker rm url-shortener || true
+          echo "Starting new container..."
           docker run \
             --detach \
             --name url-shortener \
             --restart unless-stopped \
             -p 8001:8001 \
             "${IMAGE_URI}"
+          echo "Deployment complete!"
+          docker ps --filter "name=url-shortener"
           EOF
