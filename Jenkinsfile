@@ -105,10 +105,11 @@ pipeline {
         
         stage('Cleanup') {
             steps {
-                echo '=== Cleaning up old images ==='
+                echo '=== Cleaning up old images ===
                 script {
                     sh """
-                        docker image prune -af --filter "until=24h"
+                        # Simple cleanup - only remove dangling images
+                        docker image prune -f || true
                     """
                 }
             }
