@@ -36,7 +36,7 @@ const urlSchema = new mongoose.Schema(
   }
 );
 
-// Create model
-const URL = mongoose.model('URL', urlSchema);
+// Create model - Export as UrlModel to avoid conflicts with global URL
+const UrlModel = mongoose.model('URL', urlSchema);
 
-module.exports = URL;
+module.exports = UrlModel;
