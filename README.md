@@ -1,4 +1,4 @@
-﻿# ⚡ Shorty - URL Shortener# ÔÜí Shorty - URL Shortener# ÔÜí Shorty - URL Shortener# ÔÜí Shorty - URL Shortener
+﻿# ⚡ Shorty - URL Shortener# ⚡ Shorty - URL Shortener# ÔÜí Shorty - URL Shortener# ÔÜí Shorty - URL Shortener# ÔÜí Shorty - URL Shortener
 
 
 
@@ -6,7 +6,7 @@
 
 
 
-**Lightning-fast URL shortening with a stunning modern interface**<div align="center">
+**Lightning-fast URL shortening with stunning modern UI**<div align="center">
 
 
 
@@ -14,9 +14,9 @@
 
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 
-[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)**Lightning-fast URL shortening with a stunning modern interface**<div align="center"><div align="center">
+[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)**Lightning-fast URL shortening with a stunning modern interface**<div align="center">
 
-[![Google Cloud](https://img.shields.io/badge/GCP-Deployed-4285F4?style=flat&logo=google-cloud&logoColor=white)](https://cloud.google.com/)
+[![GCP](https://img.shields.io/badge/GCP-Deployed-4285F4?style=flat&logo=google-cloud&logoColor=white)](https://cloud.google.com/)
 
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -24,357 +24,309 @@
 
 ![GitHub last commit](https://img.shields.io/github/last-commit/theshikharpurwar/devops-url-shortener)[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
 
-![GitHub repo size](https://img.shields.io/github/repo-size/theshikharpurwar/devops-url-shortener)
 
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 
-[Live Demo](http://34.72.126.110:8001) • [Report Bug](https://github.com/theshikharpurwar/devops-url-shortener/issues) • [Request Feature](https://github.com/theshikharpurwar/devops-url-shortener/issues)
+[🌐 Live Demo](http://34.72.126.110:8001) • [🐛 Report Bug](https://github.com/theshikharpurwar/devops-url-shortener/issues) • [✨ Request Feature](https://github.com/theshikharpurwar/devops-url-shortener/issues)[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 
-[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)**Lightning-fast URL shortening with a stunning modern interface**![Shorty Logo](https://img.shields.io/badge/ÔÜí-Shorty-blueviolet?style=for-the-badge)
 
-</div>
 
-[![Google Cloud](https://img.shields.io/badge/GCP-Deployed-4285F4?style=flat&logo=google-cloud&logoColor=white)](https://cloud.google.com/)
+</div>[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)**Lightning-fast URL shortening with a stunning modern interface**<div align="center"><div align="center">
 
----
 
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-## 📖 Table of Contents
+---[![Google Cloud](https://img.shields.io/badge/GCP-Deployed-4285F4?style=flat&logo=google-cloud&logoColor=white)](https://cloud.google.com/)
+
+
+
+## 📋 Table of Contents[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 
 
 - [About](#-about)
 
-- [Features](#-features)![GitHub last commit](https://img.shields.io/github/last-commit/theshikharpurwar/devops-url-shortener)[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)**Lightning-fast URL shortening with a stunning modern interface**
+- [Features](#-features)
 
-- [Demo](#-demo)
-
-- [Quick Start](#-quick-start)![GitHub repo size](https://img.shields.io/github/repo-size/theshikharpurwar/devops-url-shortener)
+- [Quick Start](#-quick-start)![GitHub last commit](https://img.shields.io/github/last-commit/theshikharpurwar/devops-url-shortener)[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)
 
 - [Usage](#-usage)
 
-- [API Documentation](#-api-documentation)[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
+- [API Documentation](#-api-documentation)![GitHub repo size](https://img.shields.io/github/repo-size/theshikharpurwar/devops-url-shortener)
 
 - [Technology Stack](#-technology-stack)
 
-- [DevOps & Deployment](#-devops--deployment)[Live Demo](http://34.72.126.110:8001) ÔÇó [Report Bug](https://github.com/theshikharpurwar/devops-url-shortener/issues) ÔÇó [Request Feature](https://github.com/theshikharpurwar/devops-url-shortener/issues)
+- [GCP Deployment](#-gcp-deployment)[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
 
 - [Project Structure](#-project-structure)
 
-- [Configuration](#-configuration)[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+- [Security](#-security)[Live Demo](http://34.72.126.110:8001) • [Report Bug](https://github.com/theshikharpurwar/devops-url-shortener/issues) • [Request Feature](https://github.com/theshikharpurwar/devops-url-shortener/issues)
 
-- [Security](#-security)
+- [Troubleshooting](#-troubleshooting)
+
+- [Contributing](#-contributing)[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)**Lightning-fast URL shortening with a stunning modern interface**![Shorty Logo](https://img.shields.io/badge/ÔÜí-Shorty-blueviolet?style=for-the-badge)
+
+- [License](#-license)
+
+</div>
+
+---
+
+[![Google Cloud](https://img.shields.io/badge/GCP-Deployed-4285F4?style=flat&logo=google-cloud&logoColor=white)](https://cloud.google.com/)
+
+## 🎯 About
+
+---
+
+**Shorty** is a modern, production-ready URL shortener built with Node.js, Express, and MongoDB. It features a stunning animated interface, real-time analytics, enterprise-grade security, and automated deployment to Google Cloud Platform using GitHub Actions.
+
+[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+### Why Shorty?
+
+## 📖 Table of Contents
+
+- 🎨 **Beautiful Design** - Animated gradients and glassmorphism effects
+
+- ⚡ **Lightning Fast** - Optimized performance with Docker
+
+- 📊 **Analytics Ready** - Track clicks, timestamps, and visitor data
+
+- 🔒 **Secure** - Rate limiting, security headers, input validation- [About](#-about)
+
+- ☁️ **Cloud Native** - Deployed on GCP with CI/CD automation
+
+- 🚀 **Production Ready** - Battle-tested DevOps practices- [Features](#-features)![GitHub last commit](https://img.shields.io/github/last-commit/theshikharpurwar/devops-url-shortener)[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?style=flat&logo=node.js&logoColor=white)](https://nodejs.org/)**Lightning-fast URL shortening with a stunning modern interface**
+
+
+
+---- [Demo](#-demo)
+
+
+
+## ✨ Features- [Quick Start](#-quick-start)![GitHub repo size](https://img.shields.io/github/repo-size/theshikharpurwar/devops-url-shortener)
+
+
+
+### 🔥 Core Features- [Usage](#-usage)
+
+- ⚡ **Instant URL Shortening** - Generate short links in milliseconds
+
+- 🔄 **Smart Redirects** - Fast 302 redirects with analytics tracking- [API Documentation](#-api-documentation)[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?style=flat&logo=docker&logoColor=white)](https://www.docker.com/)
+
+- 📊 **Real-time Analytics** - Track clicks, user agents, and IP addresses
+
+- 🎨 **Modern UI** - Animated 4-color gradient background with floating shapes- [Technology Stack](#-technology-stack)
+
+- 📱 **Fully Responsive** - Perfect on desktop, tablet, and mobile
+
+- 🔗 **One-Click Copy** - Copy shortened URLs with visual feedback- [DevOps & Deployment](#-devops--deployment)[Live Demo](http://34.72.126.110:8001) ÔÇó [Report Bug](https://github.com/theshikharpurwar/devops-url-shortener/issues) ÔÇó [Request Feature](https://github.com/theshikharpurwar/devops-url-shortener/issues)
+
+
+
+### 🛡️ Security Features- [Project Structure](#-project-structure)
+
+- **Helmet.js** - 12+ security headers enabled
+
+- **Rate Limiting** - 10 URLs per 15 minutes per IP- [Configuration](#-configuration)[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-47A248?style=flat&logo=mongodb&logoColor=white)](https://www.mongodb.com/)[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
+
+- **Input Validation** - URL format validation and sanitization
+
+- **CORS Protection** - Configurable cross-origin policies- [Security](#-security)
+
+- **XSS Protection** - Content Security Policy headers
 
 - [Troubleshooting](#-troubleshooting)</div>
 
-- [Contributing](#-contributing)
+### 🐳 DevOps Features
 
-- [License](#-license)[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+- **Docker** - Multi-stage builds with Alpine Linux- [Contributing](#-contributing)
 
+- **Docker Compose** - One-command local development
 
+- **GitHub Actions** - Automated CI/CD pipeline- [License](#-license)[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+- **GCP Deployment** - Running on Google Compute Engine
+
+- **Health Checks** - Built-in monitoring endpoints
+
+- **Logging** - Comprehensive request/response logs
 
 ------
 
+---
 
+
+
+## 🚀 Quick Start
 
 ## 🎯 About[![Docker](https://img.shields.io/badge/Docker-20+-blue.svg)](https://www.docker.com/)
 
+### Prerequisites
 
 
-**Shorty** is a modern, production-ready URL shortener built with the MERN stack and deployed on Google Cloud Platform. It features a stunning animated interface, comprehensive analytics, enterprise-grade security, and a complete CI/CD pipeline using GitHub Actions.## ­ƒôû Table of Contents
+
+- Docker (v20.0+)
+
+- Docker Compose (v2.0+)**Shorty** is a modern, production-ready URL shortener built with the MERN stack and deployed on Google Cloud Platform. It features a stunning animated interface, comprehensive analytics, enterprise-grade security, and a complete CI/CD pipeline using GitHub Actions.## ­ƒôû Table of Contents
+
+- Git
 
 
+
+### Installation
 
 ### Why Shorty?![GitHub last commit](https://img.shields.io/github/last-commit/theshikharpurwar/devops-url-shortener)
 
-
-
-- 🎨 **Beautiful Design** - Modern UI with animated gradients and smooth interactions- [About](#-about)
-
-- ⚡ **Blazing Fast** - Optimized performance with Docker containerization
-
-- 📊 **Analytics Ready** - Track every click with detailed visit history- [Features](#-features)![GitHub repo size](https://img.shields.io/github/repo-size/theshikharpurwar/devops-url-shortener)[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)[![MongoDB](https://img.shields.io/badge/MongoDB-Latest-green.svg)](https://www.mongodb.com/)
-
-- 🔒 **Secure by Default** - Rate limiting, security headers, and input validation
-
-- ☁️ **Cloud Native** - Deployed on Google Cloud Platform with automated CI/CD- [Demo](#-demo)
-
-- 🚀 **Production Ready** - Enterprise-grade DevOps practices
-
-- [Quick Start](#-quick-start)
-
----
-
-- [Usage](#-usage)
-
-## ✨ Features
-
-- [API Documentation](#-api-documentation)[Live Demo](http://34.72.126.110:8001) ÔÇó [Report Bug](https://github.com/theshikharpurwar/devops-url-shortener/issues) ÔÇó [Request Feature](https://github.com/theshikharpurwar/devops-url-shortener/issues)[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-
-### Core Features
-
-- ⚡ **Instant URL Shortening** - Generate short links in milliseconds- [Technology Stack](#-technology-stack)
-
-- 🔄 **Smart Redirects** - Fast 302 redirects to original URLs
-
-- 📊 **Real-time Analytics** - Track clicks, timestamps, user agents, and IPs- [DevOps & Deployment](#-devops--deployment)
-
-- 🎨 **Modern UI** - Animated gradient backgrounds with floating shapes
-
-- 📱 **Fully Responsive** - Works perfectly on desktop, tablet, and mobile- [Project Structure](#-project-structure)
-
-- 🔗 **One-Click Copy** - Copy shortened URLs with visual feedback
-
-- [Configuration](#-configuration)</div>[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-green.svg)](https://www.mongodb.com/)
-
-### Security Features
-
-- 🛡️ **Helmet.js Integration** - 12+ security headers enabled- [Security](#-security)
-
-- ⏱️ **Rate Limiting** - 10 URLs per 15 minutes per IP
-
-- ✅ **Input Validation** - URL format validation and sanitization- [Troubleshooting](#-troubleshooting)
-
-- 🔒 **CORS Protection** - Configurable cross-origin policies
-
-- 🚫 **XSS Protection** - Content Security Policy headers- [Contributing](#-contributing)
-
-
-
-### DevOps Features- [License](#-license)---[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)> **End-to-End DevOps Pipeline Project** - A complete URL shortener application with containerization, built for learning CI/CD, Kubernetes, AWS, and Infrastructure as Code.
-
-- 🐳 **Docker Support** - Multi-stage builds with Alpine Linux
-
-- 📦 **Docker Compose** - One-command local development
-
-- 🔄 **CI/CD Pipeline** - Automated deployment with GitHub Actions
-
-- ☁️ **Cloud Deployment** - Running on Google Compute Engine---
-
-- 🔍 **Health Checks** - Built-in monitoring and health endpoints
-
-- 📝 **Comprehensive Logging** - Detailed request/response logs
-
-
-
----## ­ƒÄ» About## ­ƒôû Table of Contents
-
-
-
-## 🎬 Demo
-
-
-
-### Live Application**Shorty** is a modern, production-ready URL shortener built with the MERN stack and deployed on Google Cloud Platform. It features a stunning animated interface, comprehensive analytics, enterprise-grade security, and a complete CI/CD pipeline using GitHub Actions.
-
-🌐 **Live Demo**: [http://34.72.126.110:8001](http://34.72.126.110:8001)
-
-
-
-### Features Showcase
-
-### Why Shorty?- [About](#-about)## Ô£¿ Features---
-
-**Modern Animated Interface**
-
-- Gradient background with 4-color animation
-
-- Floating blur shapes effects
-
-- Glassmorphism design (frosted glass)- ­ƒÄ¿ **Beautiful Design** - Modern UI with animated gradients and smooth interactions- [Features](#-features)
-
-- Smooth button ripple effects
-
-- Responsive copy-to-clipboard- ÔÜí **Blazing Fast** - Optimized performance with Docker containerization
-
-
-
----- ­ƒôè **Analytics Ready** - Track every click with detailed visit history- [Demo](#-demo)
-
-
-
-## 🚀 Quick Start- ­ƒöÆ **Secure by Default** - Rate limiting, security headers, and input validation
-
-
-
-### Prerequisites- Ôÿü´©Å **Cloud Native** - Deployed on Google Cloud Platform with automated CI/CD- [Quick Start](#-quick-start)
-
-
-
-- **Docker** (v20.0+)- ­ƒÜÇ **Production Ready** - Enterprise-grade DevOps practices
-
-- **Docker Compose** (v2.0+)
-
-- **Git**- [Usage](#-usage)- ­ƒÜÇ **Lightning Fast** - Instant URL shortening## ­ƒôï Table of Contents
-
-
-
-### Local Installation---
-
-
-
-```bash- [API Documentation](#-api-documentation)
+```bash
 
 # 1. Clone the repository
 
-git clone https://github.com/theshikharpurwar/devops-url-shortener.git## Ô£¿ Features
+git clone https://github.com/theshikharpurwar/devops-url-shortener.git
 
-cd devops-url-shortener
-
-- [Technology Stack](#-technology-stack)- ­ƒÄ¿ **Modern UI** - Beautiful, animated interface
-
-# 2. Start the application
-
-docker-compose up -d### Core Features
+cd devops-url-shortener- 🎨 **Beautiful Design** - Modern UI with animated gradients and smooth interactions- [About](#-about)
 
 
 
-# 3. Access the application- ÔÜí **Instant URL Shortening** - Generate short links in milliseconds- [Project Structure](#-project-structure)
+# 2. Start the application- ⚡ **Blazing Fast** - Optimized performance with Docker containerization
 
-# Open http://localhost:8001 in your browser
+docker-compose up -d
 
-```- ­ƒöä **Smart Redirects** - Fast 302 redirects to original URLs
+- 📊 **Analytics Ready** - Track every click with detailed visit history- [Features](#-features)![GitHub repo size](https://img.shields.io/github/repo-size/theshikharpurwar/devops-url-shortener)[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)[![MongoDB](https://img.shields.io/badge/MongoDB-Latest-green.svg)](https://www.mongodb.com/)
 
+# 3. Access the app
 
-
-That's it! The app is now running! 🎉- ­ƒôè **Real-time Analytics** - Track clicks, timestamps, user agents, and IPs- [Configuration](#-configuration)- ­ƒôè **Analytics** - Track clicks and visit history- [Project Overview](#-project-overview)
-
-
-
-### Verify Installation- ­ƒÄ¿ **Modern UI** - Animated gradient backgrounds with floating shapes
-
-
-
-```bash- ­ƒô▒ **Fully Responsive** - Works perfectly on desktop, tablet, and mobile- [Deployment](#-deployment)
-
-# Check if containers are running
-
-docker ps- ­ƒöù **One-Click Copy** - Copy shortened URLs with visual feedback
-
-
-
-# You should see:- [Security](#-security)- ­ƒöÆ **Secure** - Rate limiting and security headers- [Phase 1: Local Development](#-phase-1-local-development-current)
-
-# - url-shortener-api (Node.js app)
-
-# - url-shortener-mongo (MongoDB)### Security Features
-
-
-
-# Test the health endpoint- ­ƒøí´©Å **Helmet.js Integration** - 12+ security headers enabled- [Contributing](#-contributing)
-
-curl http://localhost:8001/health
-
-- ÔÅ▒´©Å **Rate Limiting** - 10 URLs per 15 minutes per IP
-
-# Expected response:
-
-# {"status":"OK","message":"Server is running"}- Ô£à **Input Validation** - URL format validation and sanitization- [License](#-license)- ­ƒÉ│ **Docker Ready** - One command to run- [Prerequisites](#-prerequisites)
+# Open http://localhost:8001 in your browser- 🔒 **Secure by Default** - Rate limiting, security headers, and input validation
 
 ```
 
-- ­ƒöÆ **CORS Protection** - Configurable cross-origin policies
+- ☁️ **Cloud Native** - Deployed on Google Cloud Platform with automated CI/CD- [Demo](#-demo)
+
+**That's it!** The app is now running! 🎉
+
+- 🚀 **Production Ready** - Enterprise-grade DevOps practices
+
+### Verify Installation
+
+- [Quick Start](#-quick-start)
+
+```bash
+
+# Check containers---
+
+docker ps
+
+- [Usage](#-usage)
+
+# Test health endpoint
+
+curl http://localhost:8001/health## ✨ Features
+
+
+
+# Expected: {"status":"OK","message":"Server is running"}- [API Documentation](#-api-documentation)[Live Demo](http://34.72.126.110:8001) ÔÇó [Report Bug](https://github.com/theshikharpurwar/devops-url-shortener/issues) ÔÇó [Request Feature](https://github.com/theshikharpurwar/devops-url-shortener/issues)[![Docker](https://img.shields.io/badge/Docker-Ready-blue.svg)](https://www.docker.com/)[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+```
+
+### Core Features
 
 ---
 
-- ­ƒÜ½ **XSS Protection** - Content Security Policy headers
+- ⚡ **Instant URL Shortening** - Generate short links in milliseconds- [Technology Stack](#-technology-stack)
 
 ## 💡 Usage
 
-
+- 🔄 **Smart Redirects** - Fast 302 redirects to original URLs
 
 ### Web Interface
 
-### DevOps Features---- ­ƒô▒ **Responsive** - Works on all devices- [Quick Start](#-quick-start)
+- 📊 **Real-time Analytics** - Track clicks, timestamps, user agents, and IPs- [DevOps & Deployment](#-devops--deployment)
 
-1. **Open the App**: Navigate to `http://localhost:8001`
+1. Open `http://localhost:8001`
 
-2. **Shorten a URL**: Enter any long URL and click "✨ Shorten Now!"- ­ƒÉ│ **Docker Support** - Multi-stage builds with Alpine Linux
+2. Enter a long URL- 🎨 **Modern UI** - Animated gradient backgrounds with floating shapes
 
-3. **Copy & Share**: Copy your new short URL
+3. Click **"✨ Shorten Now!"**
 
-4. **Track Analytics**: Access `/url/analytics/{shortId}` for statistics- ­ƒôª **Docker Compose** - One-command local development
+4. Copy and share your short URL- 📱 **Fully Responsive** - Works perfectly on desktop, tablet, and mobile- [Project Structure](#-project-structure)
 
+5. View analytics at `/url/analytics/{shortId}`
 
+- 🔗 **One-Click Copy** - Copy shortened URLs with visual feedback
 
-### Command Line Usage- ­ƒöä **CI/CD Pipeline** - Automated deployment with GitHub Actions
+### Command Line
 
+- [Configuration](#-configuration)</div>[![MongoDB](https://img.shields.io/badge/MongoDB-7.0-green.svg)](https://www.mongodb.com/)
 
+```bash
 
-```bash- Ôÿü´©Å **Cloud Deployment** - Running on Google Compute Engine## ­ƒÄ» About- [Project Structure](#-project-structure)
+# Create short URL### Security Features
 
-# Create a short URL
+curl -X POST http://localhost:8001/url \
 
-curl -X POST http://localhost:8001/url \- ­ƒöì **Health Checks** - Built-in monitoring and health endpoints
+  -H "Content-Type: application/json" \- 🛡️ **Helmet.js Integration** - 12+ security headers enabled- [Security](#-security)
 
-  -H "Content-Type: application/json" \
+  -d '{"url": "https://github.com/theshikharpurwar"}'
 
-  -d '{"url": "https://github.com/theshikharpurwar"}'- ­ƒôØ **Comprehensive Logging** - Detailed request/response logs
-
-
+- ⏱️ **Rate Limiting** - 10 URLs per 15 minutes per IP
 
 # Response:
 
-# {
+# {- ✅ **Input Validation** - URL format validation and sanitization- [Troubleshooting](#-troubleshooting)
 
-#   "success": true,---**Shorty** is a modern, production-ready URL shortener built with the MERN stack (MongoDB, Express, React-inspired UI, Node.js). It features a stunning animated interface, comprehensive analytics, and enterprise-grade security features.## ­ƒÜÇ Quick Start- [API Documentation](#-api-documentation)
+#   "success": true,
 
-#   "id": "abc123",
+#   "id": "abc123",- 🔒 **CORS Protection** - Configurable cross-origin policies
 
 #   "shortUrl": "http://localhost:8001/abc123",
 
-#   "originalUrl": "https://github.com/theshikharpurwar"
+#   "originalUrl": "https://github.com/theshikharpurwar"- 🚫 **XSS Protection** - Content Security Policy headers- [Contributing](#-contributing)
 
-# }## ­ƒÄ¼ Demo
+# }
 
 
 
 # Get analytics
 
-curl http://localhost:8001/url/analytics/abc123
+curl http://localhost:8001/url/analytics/abc123### DevOps Features- [License](#-license)---[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)> **End-to-End DevOps Pipeline Project** - A complete URL shortener application with containerization, built for learning CI/CD, Kubernetes, AWS, and Infrastructure as Code.
 
-```### Live Application### Why Shorty?- [Testing the Application](#-testing-the-application)
+```
 
+- 🐳 **Docker Support** - Multi-stage builds with Alpine Linux
 
+---
 
----­ƒîÉ **Live Demo**: [http://34.72.126.110:8001](http://34.72.126.110:8001)
-
-
+- 📦 **Docker Compose** - One-command local development
 
 ## 📡 API Documentation
 
+- 🔄 **CI/CD Pipeline** - Automated deployment with GitHub Actions
+
+### Base URLs
+
+- **Local:** `http://localhost:8001`- ☁️ **Cloud Deployment** - Running on Google Compute Engine---
+
+- **Production:** `http://34.72.126.110:8001`
+
+- 🔍 **Health Checks** - Built-in monitoring and health endpoints
+
+### Endpoints
+
+- 📝 **Comprehensive Logging** - Detailed request/response logs
+
+#### 1️⃣ Create Short URL
 
 
-### Base URLs### Features Showcase
-
-```
-
-Local:  http://localhost:8001- ­ƒÄ¿ **Beautiful Design** - Modern UI with animated gradients and smooth interactions### Prerequisites- [Troubleshooting](#-troubleshooting)
-
-Cloud:  http://34.72.126.110:8001
-
-```**Modern Animated Interface**
-
-
-
-### Endpoints- Gradient background with 4-color animation- ÔÜí **Blazing Fast** - Optimized performance with Docker containerization
-
-
-
-#### 1. Create Short URL- Floating blur shapes effects
 
 **POST** `/url`
 
-- Glassmorphism design (frosted glass)- ­ƒôè **Analytics Ready** - Track every click with detailed visit history- [Next Phases](#-next-phases)
+---## ­ƒÄ» About## ­ƒôû Table of Contents
 
 **Request:**
 
-```json- Smooth button ripple effects
+```json
 
 {
 
-  "url": "https://example.com/very/long/url"- Responsive copy-to-clipboard- ­ƒöÆ **Secure by Default** - Rate limiting, security headers, and input validation
+  "url": "https://example.com/very/long/url"## 🎬 Demo
 
 }
 
@@ -382,235 +334,897 @@ Cloud:  http://34.72.126.110:8001
 
 
 
-**Response:** `201 Created`---- ­ƒÉ│ **Cloud Ready** - Deployed on Google Cloud Platform with CI/CD- Docker & Docker Compose
+**Response:** `201 Created`### Live Application**Shorty** is a modern, production-ready URL shortener built with the MERN stack and deployed on Google Cloud Platform. It features a stunning animated interface, comprehensive analytics, enterprise-grade security, and a complete CI/CD pipeline using GitHub Actions.
 
 ```json
 
-{
+{🌐 **Live Demo**: [http://34.72.126.110:8001](http://34.72.126.110:8001)
 
   "success": true,
 
-  "id": "XyZ123",## ­ƒÜÇ Quick Start
+  "id": "XyZ123",
 
   "shortUrl": "http://localhost:8001/XyZ123",
 
-  "originalUrl": "https://example.com/very/long/url"
+  "originalUrl": "https://example.com/very/long/url"### Features Showcase
 
 }
 
-```### Prerequisites---- Git---
+```### Why Shorty?- [About](#-about)## Ô£¿ Features---
 
 
 
-**Rate Limit:** 10 requests per 15 minutes per IP
+**Rate Limit:** 10 requests per 15 minutes per IP**Modern Animated Interface**
 
 
 
----- **Docker** (v20.0+)
+---- Gradient background with 4-color animation
 
 
 
-#### 2. Redirect to Original URL- **Docker Compose** (v2.0+)
-
-**GET** `/:shortId`
-
-- **Git**## Ô£¿ Features
-
-Redirects to the original URL and tracks analytics.
+#### 2️⃣ Redirect to Original URL- Floating blur shapes effects
 
 
 
-**Response:** `302 Found` (Redirects to original URL)
+**GET** `/:shortId`- Glassmorphism design (frosted glass)- ­ƒÄ¿ **Beautiful Design** - Modern UI with animated gradients and smooth interactions- [Features](#-features)
 
-### Local Installation
+
+
+Redirects to the original URL and tracks analytics.- Smooth button ripple effects
+
+
+
+**Response:** `302 Found` (Redirects to original URL)- Responsive copy-to-clipboard- ÔÜí **Blazing Fast** - Optimized performance with Docker containerization
+
+
 
 ---
 
 
 
-#### 3. Get Analytics
-
-**GET** `/url/analytics/:shortId````bash### Core Features### Run Locally## ­ƒÄ» Project Overview
+#### 3️⃣ Get Analytics---- ­ƒôè **Analytics Ready** - Track every click with detailed visit history- [Demo](#-demo)
 
 
 
-**Response:** `200 OK`# 1. Clone the repository
+**GET** `/url/analytics/:shortId`
+
+
+
+**Response:** `200 OK`## 🚀 Quick Start- ­ƒöÆ **Secure by Default** - Rate limiting, security headers, and input validation
 
 ```json
 
-{git clone https://github.com/theshikharpurwar/devops-url-shortener.git- ÔÜí **Instant URL Shortening** - Generate short links in milliseconds
+{
 
   "success": true,
 
-  "shortId": "XyZ123",cd devops-url-shortener
+  "shortId": "XyZ123",### Prerequisites- Ôÿü´©Å **Cloud Native** - Deployed on Google Cloud Platform with automated CI/CD- [Quick Start](#-quick-start)
 
   "originalUrl": "https://example.com",
 
-  "totalClicks": 42,- ­ƒöä **Smart Redirects** - Fast 302 redirects to original URLs
+  "totalClicks": 42,
 
   "visitHistory": [
 
-    {# 2. Start the application
+    {- **Docker** (v20.0+)- ­ƒÜÇ **Production Ready** - Enterprise-grade DevOps practices
 
-      "timestamp": "2025-10-26T12:30:00.000Z",
+      "timestamp": "2025-10-28T12:30:00.000Z",
 
-      "userAgent": "Mozilla/5.0...",docker-compose up -d- ­ƒôè **Real-time Analytics** - Track clicks, timestamps, user agents, and IPs
+      "userAgent": "Mozilla/5.0...",- **Docker Compose** (v2.0+)
 
       "ipAddress": "192.168.1.1"
 
-    }
+    }- **Git**- [Usage](#-usage)- ­ƒÜÇ **Lightning Fast** - Instant URL shortening## ­ƒôï Table of Contents
 
   ],
 
-  "createdAt": "2025-10-25T10:00:00.000Z",# 3. Access the application- ­ƒÄ¿ **Modern UI** - Animated gradient backgrounds with floating shapes```bashThis is a **complete DevOps project** designed to demonstrate the full software development lifecycle with modern DevOps practices. We're building a URL shortener application and deploying it through a professional CI/CD pipeline.
+  "createdAt": "2025-10-25T10:00:00.000Z",
 
-  "updatedAt": "2025-10-26T12:30:00.000Z"
+  "updatedAt": "2025-10-28T12:30:00.000Z"
 
-}# Open http://localhost:8001 in your browser
+}### Local Installation---
 
 ```
 
-```- ­ƒô▒ **Fully Responsive** - Works perfectly on desktop, tablet, and mobile
+
 
 ---
 
+```bash- [API Documentation](#-api-documentation)
 
+#### 4️⃣ Health Check
 
-#### 4. Health Check
+# 1. Clone the repository
 
-**GET** `/health`That's it! The app is now running! ­ƒÄë- ­ƒöù **One-Click Copy** - Copy shortened URLs with visual feedback# Clone the repository
+**GET** `/health`
 
-
+git clone https://github.com/theshikharpurwar/devops-url-shortener.git## Ô£¿ Features
 
 **Response:** `200 OK`
 
-```json
+```jsoncd devops-url-shortener
 
-{### Verify Installation
+{
 
-  "status": "OK",
+  "status": "OK",- [Technology Stack](#-technology-stack)- ­ƒÄ¿ **Modern UI** - Beautiful, animated interface
 
   "message": "Server is running",
 
-  "timestamp": "2025-10-26T12:30:00.000Z"
+  "timestamp": "2025-10-28T12:30:00.000Z"# 2. Start the application
 
-}```bash### Security Featuresgit clone https://github.com/theshikharpurwar/devops-url-shortener.git### The Complete Journey (4 Phases)
+}
 
-```
+```docker-compose up -d### Core Features
 
-# Check if containers are running
+
 
 ---
 
-docker ps- ­ƒøí´©Å **Helmet.js Integration** - 12+ security headers enabled
-
-## 🛠️ Technology Stack
 
 
-
-### Backend
-
-- **Runtime**: Node.js 18 (LTS)# You should see:- ÔÅ▒´©Å **Rate Limiting** - 10 URLs per 15 minutes per IPcd devops-url-shortener
-
-- **Framework**: Express.js 4.18
-
-- **Database**: MongoDB 7.0# - url-shortener-api (Node.js app)
-
-- **ODM**: Mongoose 8.0
-
-- **ID Generation**: shortid 2.2# - url-shortener-mongo (MongoDB)- Ô£à **Input Validation** - URL format validation and sanitization
+## 🛠️ Technology Stack# 3. Access the application- ÔÜí **Instant URL Shortening** - Generate short links in milliseconds- [Project Structure](#-project-structure)
 
 
+
+### Backend# Open http://localhost:8001 in your browser
+
+- **Node.js** 18 (LTS)
+
+- **Express.js** 4.18```- ­ƒöä **Smart Redirects** - Fast 302 redirects to original URLs
+
+- **MongoDB** 7.0
+
+- **Mongoose** 8.0
+
+- **shortid** 2.2
+
+That's it! The app is now running! 🎉- ­ƒôè **Real-time Analytics** - Track clicks, timestamps, user agents, and IPs- [Configuration](#-configuration)- ­ƒôè **Analytics** - Track clicks and visit history- [Project Overview](#-project-overview)
 
 ### Security
 
 - **Helmet.js** - Security headers
 
-- **express-rate-limit** - Rate limiting# Test the health endpoint- ­ƒöÆ **CORS Protection** - Configurable cross-origin policies| Phase | Focus | Tools | Status |
+- **express-rate-limit** - Rate limiting middleware
 
-- **Input Validation** - URL sanitization
-
-curl http://localhost:8001/health
+### Verify Installation- ­ƒÄ¿ **Modern UI** - Animated gradient backgrounds with floating shapes
 
 ### Frontend
 
-- **Template Engine**: EJS 3.1- ­ƒÜ½ **XSS Protection** - Content Security Policy headers
+- **EJS** 3.1 - Template engine
 
-- **CSS**: Custom CSS3 with animations
+- **CSS3** - Animations and gradients
 
-- **Fonts**: Google Fonts (Poppins)# Expected response:
+- **Google Fonts** - Poppins typography```bash- ­ƒô▒ **Fully Responsive** - Works perfectly on desktop, tablet, and mobile- [Deployment](#-deployment)
 
-- **JavaScript**: Vanilla ES6+
+- **Vanilla JavaScript** - ES6+
 
-# {"status":"OK","message":"Server is running"}# Start the application|-------|-------|-------|--------|
+# Check if containers are running
 
 ### DevOps & Cloud
 
-- **Containerization**: Docker with multi-stage builds```
+- **Docker** - Containerizationdocker ps- ­ƒöù **One-Click Copy** - Copy shortened URLs with visual feedback
 
-- **Orchestration**: Docker Compose
+- **Docker Compose** - Multi-container orchestration
 
-- **CI/CD**: GitHub Actions### Developer Features
+- **GitHub Actions** - CI/CD automation
 
-- **Cloud Platform**: Google Cloud Platform (GCP)
+- **Google Cloud Platform** - Cloud hosting
 
-- **Compute**: Google Compute Engine (GCE)---
+- **Google Compute Engine** - VM hosting# You should see:- [Security](#-security)- ­ƒöÆ **Secure** - Rate limiting and security headers- [Phase 1: Local Development](#-phase-1-local-development-current)
 
-- **Container Registry**: Google Artifact Registry
+- **Google Artifact Registry** - Container registry
 
-- **Authentication**: Workload Identity Federation (keyless)- ­ƒÉ│ **Docker Support** - Multi-stage builds with Alpine Linuxdocker-compose up -d| **Phase 1** | **Local Development** | Node.js, MongoDB, Docker, Docker Compose | Ô£à **COMPLETE** |
+- **Workload Identity Federation** - Keyless authentication# - url-shortener-api (Node.js app)
 
 
+
+---# - url-shortener-mongo (MongoDB)### Security Features
+
+
+
+## ☁️ GCP Deployment
+
+
+
+This project uses **GitHub Actions** for automated deployment to **Google Cloud Platform**.# Test the health endpoint- ­ƒøí´©Å **Helmet.js Integration** - 12+ security headers enabled- [Contributing](#-contributing)
+
+
+
+### Architecturecurl http://localhost:8001/health
+
+
+
+```- ÔÅ▒´©Å **Rate Limiting** - 10 URLs per 15 minutes per IP
+
+┌──────────────────────────────────┐
+
+│      GitHub Repository           │# Expected response:
+
+│   (devops-url-shortener)         │
+
+└────────────┬─────────────────────┘# {"status":"OK","message":"Server is running"}- Ô£à **Input Validation** - URL format validation and sanitization- [License](#-license)- ­ƒÉ│ **Docker Ready** - One command to run- [Prerequisites](#-prerequisites)
+
+             │
+
+             │ Push to main```
+
+             ▼
+
+┌──────────────────────────────────┐- ­ƒöÆ **CORS Protection** - Configurable cross-origin policies
+
+│      GitHub Actions              │
+
+│  (Workload Identity Federation)  │---
+
+└────────────┬─────────────────────┘
+
+             │- ­ƒÜ½ **XSS Protection** - Content Security Policy headers
+
+             │ Build & Push Image
+
+             ▼## 💡 Usage
+
+┌──────────────────────────────────┐
+
+│   Google Artifact Registry       │
+
+│     (us-central1)                │
+
+└────────────┬─────────────────────┘### Web Interface
+
+             │
+
+             │ Pull & Deploy### DevOps Features---- ­ƒô▒ **Responsive** - Works on all devices- [Quick Start](#-quick-start)
+
+             ▼
+
+┌──────────────────────────────────┐1. **Open the App**: Navigate to `http://localhost:8001`
+
+│   Google Compute Engine          │
+
+│    VM: url-shortener-vm          │2. **Shorten a URL**: Enter any long URL and click "✨ Shorten Now!"- ­ƒÉ│ **Docker Support** - Multi-stage builds with Alpine Linux
+
+│    IP: 34.72.126.110             │
+
+│                                  │3. **Copy & Share**: Copy your new short URL
+
+│  ┌──────────┐  ┌──────────────┐ │
+
+│  │ MongoDB  │  │  Node.js API │ │4. **Track Analytics**: Access `/url/analytics/{shortId}` for statistics- ­ƒôª **Docker Compose** - One-command local development
+
+│  │ :27017   │  │  :8001       │ │
+
+│  └──────────┘  └──────────────┘ │
+
+└──────────────────────────────────┘
+
+             │### Command Line Usage- ­ƒöä **CI/CD Pipeline** - Automated deployment with GitHub Actions
+
+             ▼
+
+      Public Access
+
+  http://34.72.126.110:8001
+
+``````bash- Ôÿü´©Å **Cloud Deployment** - Running on Google Compute Engine## ­ƒÄ» About- [Project Structure](#-project-structure)
+
+
+
+### CI/CD Pipeline# Create a short URL
+
+
+
+**Triggers:**curl -X POST http://localhost:8001/url \- ­ƒöì **Health Checks** - Built-in monitoring and health endpoints
+
+- ✅ Push to `main` → Build, test, and deploy
+
+- ✅ Pull Request → Build and test only (no deployment)  -H "Content-Type: application/json" \
+
+- ✅ Manual dispatch → Full pipeline
+
+  -d '{"url": "https://github.com/theshikharpurwar"}'- ­ƒôØ **Comprehensive Logging** - Detailed request/response logs
+
+**Jobs:**
+
+
+
+1. **Build & Test** (runs on all events)
+
+   - Install dependencies# Response:
+
+   - Run tests
+
+   - Build Docker image# {
+
+   - Validate code
+
+#   "success": true,---**Shorty** is a modern, production-ready URL shortener built with the MERN stack (MongoDB, Express, React-inspired UI, Node.js). It features a stunning animated interface, comprehensive analytics, and enterprise-grade security features.## ­ƒÜÇ Quick Start- [API Documentation](#-api-documentation)
+
+2. **Deploy** (runs only on push to main)
+
+   - Authenticate to GCP (keyless)#   "id": "abc123",
+
+   - Push image to Artifact Registry
+
+   - SSH to Compute Engine#   "shortUrl": "http://localhost:8001/abc123",
+
+   - Deploy MongoDB + API containers
+
+   - Run health checks#   "originalUrl": "https://github.com/theshikharpurwar"
+
+
+
+### GCP Resources# }## ­ƒÄ¼ Demo
+
+
+
+- **Project:** banded-oven-471507-q9
+
+- **Region:** us-central1
+
+- **VM Instance:** url-shortener-vm# Get analytics
+
+- **Artifact Registry:** url-shortener
+
+- **Service Account:** github-actions-sa@banded-oven-471507-q9.iam.gserviceaccount.comcurl http://localhost:8001/url/analytics/abc123
+
+
+
+---```### Live Application### Why Shorty?- [Testing the Application](#-testing-the-application)
+
+
+
+## 📁 Project Structure
+
+
+
+```---­ƒîÉ **Live Demo**: [http://34.72.126.110:8001](http://34.72.126.110:8001)
+
+devops-url-shortener/
+
+│
+
+├── .github/
+
+│   └── workflows/## 📡 API Documentation
+
+│       └── deploy.yml              # GitHub Actions CI/CD
+
+│
+
+├── src/
+
+│   ├── controllers/### Base URLs### Features Showcase
+
+│   │   └── urlController.js        # Business logic
+
+│   ├── models/```
+
+│   │   └── url.js                  # Mongoose schema
+
+│   ├── routes/Local:  http://localhost:8001- ­ƒÄ¿ **Beautiful Design** - Modern UI with animated gradients and smooth interactions### Prerequisites- [Troubleshooting](#-troubleshooting)
+
+│   │   └── url.js                  # API routes
+
+│   └── connect.js                  # MongoDB connectionCloud:  http://34.72.126.110:8001
+
+│
+
+├── views/```**Modern Animated Interface**
+
+│   └── index.ejs                   # Frontend UI
+
+│
+
+├── index.js                        # Express server
+
+├── package.json                    # Dependencies### Endpoints- Gradient background with 4-color animation- ÔÜí **Blazing Fast** - Optimized performance with Docker containerization
+
+├── Dockerfile                      # Container image
+
+├── docker-compose.yml              # Local development
+
+├── .dockerignore
+
+├── .gitignore#### 1. Create Short URL- Floating blur shapes effects
+
+├── README.md                       # This file
+
+├── IMPROVEMENTS.md                 # Future features**POST** `/url`
+
+└── BRANCH-CONSOLIDATION-SUMMARY.md # Project evolution
+
+```- Glassmorphism design (frosted glass)- ­ƒôè **Analytics Ready** - Track every click with detailed visit history- [Next Phases](#-next-phases)
+
+
+
+---**Request:**
+
+
+
+## ⚙️ Configuration```json- Smooth button ripple effects
+
+
+
+### Environment Variables{
+
+
+
+Create `.env` file (optional):  "url": "https://example.com/very/long/url"- Responsive copy-to-clipboard- ­ƒöÆ **Secure by Default** - Rate limiting, security headers, and input validation
+
+
+
+```env}
+
+# Server
+
+PORT=8001```
+
+NODE_ENV=production
+
+
+
+# MongoDB
+
+MONGO_URL=mongodb://mongo:27017/url-shortener**Response:** `201 Created`---- ­ƒÉ│ **Cloud Ready** - Deployed on Google Cloud Platform with CI/CD- Docker & Docker Compose
+
+
+
+# Security```json
+
+RATE_LIMIT_WINDOW_MS=900000    # 15 minutes
+
+RATE_LIMIT_MAX_REQUESTS=10     # 10 requests{
+
+```
+
+  "success": true,
+
+### Docker Compose
+
+  "id": "XyZ123",## ­ƒÜÇ Quick Start
+
+```yaml
+
+version: '3.8'  "shortUrl": "http://localhost:8001/XyZ123",
+
+services:
+
+  mongo:  "originalUrl": "https://example.com/very/long/url"
+
+    image: mongo:7.0
+
+    ports:}
+
+      - "27017:27017"
+
+    volumes:```### Prerequisites---- Git---
+
+      - mongodb_data:/data/db
+
+
+
+  api:
+
+    build: .**Rate Limit:** 10 requests per 15 minutes per IP
+
+    ports:
+
+      - "8001:8001"
+
+    environment:
+
+      - MONGO_URL=mongodb://mongo:27017/url-shortener---- **Docker** (v20.0+)
+
+      - PORT=8001
+
+```
+
+
+
+---#### 2. Redirect to Original URL- **Docker Compose** (v2.0+)
+
+
+
+## 🔒 Security**GET** `/:shortId`
+
+
+
+### Implemented Measures- **Git**## Ô£¿ Features
+
+
+
+#### Security Headers (Helmet.js)Redirects to the original URL and tracks analytics.
+
+```
+
+✅ Strict-Transport-Security
+
+✅ X-Content-Type-Options: nosniff
+
+✅ X-Frame-Options: SAMEORIGIN**Response:** `302 Found` (Redirects to original URL)
+
+✅ X-XSS-Protection
+
+✅ Referrer-Policy: no-referrer### Local Installation
+
+✅ Cross-Origin-Opener-Policy
+
+✅ Cross-Origin-Resource-Policy---
+
+```
+
+
+
+#### Rate Limiting
+
+- **Limit:** 10 URL creations per 15 minutes per IP#### 3. Get Analytics
+
+- **Scope:** POST /url endpoint
+
+- **Purpose:** Prevent abuse and DDoS**GET** `/url/analytics/:shortId````bash### Core Features### Run Locally## ­ƒÄ» Project Overview
+
+
+
+#### Input Validation
+
+- URL format validation
+
+- Automatic protocol addition (http/https)**Response:** `200 OK`# 1. Clone the repository
+
+- Malicious input sanitization
+
+```json
+
+---
+
+{git clone https://github.com/theshikharpurwar/devops-url-shortener.git- ÔÜí **Instant URL Shortening** - Generate short links in milliseconds
+
+## 🐛 Troubleshooting
+
+  "success": true,
+
+### Port Already in Use
+
+  "shortId": "XyZ123",cd devops-url-shortener
+
+```bash
+
+# Windows  "originalUrl": "https://example.com",
+
+netstat -ano | findstr :8001
+
+  "totalClicks": 42,- ­ƒöä **Smart Redirects** - Fast 302 redirects to original URLs
+
+# Linux/Mac
+
+lsof -i :8001  "visitHistory": [
+
+
+
+# Change port in docker-compose.yml    {# 2. Start the application
+
+ports:
+
+  - "8002:8001"      "timestamp": "2025-10-26T12:30:00.000Z",
+
+```
+
+      "userAgent": "Mozilla/5.0...",docker-compose up -d- ­ƒôè **Real-time Analytics** - Track clicks, timestamps, user agents, and IPs
+
+### MongoDB Connection Failed
+
+      "ipAddress": "192.168.1.1"
+
+```bash
+
+# Check MongoDB    }
+
+docker ps | grep mongo
+
+  ],
+
+# Restart
+
+docker-compose restart mongo  "createdAt": "2025-10-25T10:00:00.000Z",# 3. Access the application- ­ƒÄ¿ **Modern UI** - Animated gradient backgrounds with floating shapes```bashThis is a **complete DevOps project** designed to demonstrate the full software development lifecycle with modern DevOps practices. We're building a URL shortener application and deploying it through a professional CI/CD pipeline.
+
+
+
+# Fresh start (deletes data!)  "updatedAt": "2025-10-26T12:30:00.000Z"
+
+docker-compose down -v
+
+docker-compose up -d}# Open http://localhost:8001 in your browser
+
+```
+
+```
+
+### Cannot Access Application
+
+```- ­ƒô▒ **Fully Responsive** - Works perfectly on desktop, tablet, and mobile
+
+```bash
+
+# Check containers---
+
+docker ps
+
+
+
+# Check logs
+
+docker logs url-shortener-api#### 4. Health Check
+
+
+
+# Health check**GET** `/health`That's it! The app is now running! ­ƒÄë- ­ƒöù **One-Click Copy** - Copy shortened URLs with visual feedback# Clone the repository
+
+curl http://localhost:8001/health
+
+
+
+# Rebuild
+
+docker-compose down -v**Response:** `200 OK`
+
+docker-compose build --no-cache
+
+docker-compose up -d```json
+
+```
+
+{### Verify Installation
+
+---
+
+  "status": "OK",
+
+## 📊 Monitoring
+
+  "message": "Server is running",
+
+### View Logs
+
+  "timestamp": "2025-10-26T12:30:00.000Z"
+
+```bash
+
+# All services}```bash### Security Featuresgit clone https://github.com/theshikharpurwar/devops-url-shortener.git### The Complete Journey (4 Phases)
+
+docker-compose logs -f
+
+```
+
+# Specific service
+
+docker-compose logs -f api# Check if containers are running
+
+docker-compose logs -f mongo
+
+---
+
+# Last 100 lines
+
+docker-compose logs --tail=100 apidocker ps- ­ƒøí´©Å **Helmet.js Integration** - 12+ security headers enabled
+
+```
+
+## 🛠️ Technology Stack
+
+### Health Monitoring
+
+
+
+```bash
+
+# App health### Backend
+
+curl http://localhost:8001/health
+
+- **Runtime**: Node.js 18 (LTS)# You should see:- ÔÅ▒´©Å **Rate Limiting** - 10 URLs per 15 minutes per IPcd devops-url-shortener
+
+# Container stats
+
+docker stats- **Framework**: Express.js 4.18
+
+
+
+# Container health- **Database**: MongoDB 7.0# - url-shortener-api (Node.js app)
+
+docker ps
+
+```- **ODM**: Mongoose 8.0
+
+
+
+---- **ID Generation**: shortid 2.2# - url-shortener-mongo (MongoDB)- Ô£à **Input Validation** - URL format validation and sanitization
+
+
+
+## 🤝 Contributing
+
+
+
+Contributions are welcome!### Security
+
+
+
+1. Fork the repository- **Helmet.js** - Security headers
+
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+
+3. Commit changes (`git commit -m 'Add amazing feature'`)- **express-rate-limit** - Rate limiting# Test the health endpoint- ­ƒöÆ **CORS Protection** - Configurable cross-origin policies| Phase | Focus | Tools | Status |
+
+4. Push to branch (`git push origin feature/amazing-feature`)
+
+5. Open Pull Request- **Input Validation** - URL sanitization
+
+
+
+### PR Guidelinescurl http://localhost:8001/health
+
+
+
+- ✅ All PRs trigger build and test checks### Frontend
+
+- ✅ Tests must pass before merge
+
+- ✅ Deployment happens automatically after merge- **Template Engine**: EJS 3.1- ­ƒÜ½ **XSS Protection** - Content Security Policy headers
+
+- ✅ Follow existing code style
+
+- **CSS**: Custom CSS3 with animations
+
+---
+
+- **Fonts**: Google Fonts (Poppins)# Expected response:
+
+## 📝 Future Enhancements
+
+- **JavaScript**: Vanilla ES6+
+
+See [IMPROVEMENTS.md](./IMPROVEMENTS.md):
+
+# {"status":"OK","message":"Server is running"}# Start the application|-------|-------|-------|--------|
+
+- 🎨 Custom short URL IDs
+
+- ⏰ URL expiration (TTL)### DevOps & Cloud
+
+- 📱 QR code generation
+
+- 🔐 Password-protected URLs- **Containerization**: Docker with multi-stage builds```
+
+- 📊 Advanced analytics dashboard
+
+- 🌍 Geographic location tracking- **Orchestration**: Docker Compose
+
+- 🔑 API key authentication
+
+- 📦 Bulk URL creation- **CI/CD**: GitHub Actions### Developer Features
+
+- 💾 Redis caching
+
+- 🧪 Comprehensive testing- **Cloud Platform**: Google Cloud Platform (GCP)
+
+
+
+---- **Compute**: Google Compute Engine (GCE)---
+
+
+
+## 📄 License- **Container Registry**: Google Artifact Registry
+
+
+
+MIT License- **Authentication**: Workload Identity Federation (keyless)- ­ƒÉ│ **Docker Support** - Multi-stage builds with Alpine Linuxdocker-compose up -d| **Phase 1** | **Local Development** | Node.js, MongoDB, Docker, Docker Compose | Ô£à **COMPLETE** |
+
+
+
+```
+
+Copyright (c) 2025 Shikhar Purwar
 
 ---## ­ƒÆí Usage
 
+Permission is hereby granted, free of charge, to any person obtaining a copy
 
+of this software and associated documentation files (the "Software"), to deal
 
-## ☁️ DevOps & Deployment- ­ƒôª **Docker Compose** - One-command local development
+in the Software without restriction, including without limitation the rights
 
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell## ☁️ DevOps & Deployment- ­ƒôª **Docker Compose** - One-command local development
 
+copies of the Software, and to permit persons to whom the Software is
 
-### CI/CD Pipeline### Web Interface
-
-
-
-This project uses **GitHub Actions** for automated deployment to Google Cloud Platform.- ­ƒöì **Health Checks** - Built-in health monitoring endpoint| **Phase 2** | **Infrastructure as Code** | Terraform, AWS (VPC, EKS, ECR, DocumentDB) | Ô£à **COMPLETE** |
-
-
-
-#### Pipeline Stages1. **Open the App**: Navigate to `http://localhost:8001`
+furnished to do so, subject to the following conditions:
 
 
 
-1. **Build & Test** (on every push and PR)2. **Shorten a URL**: Enter any long URL and click "Ô£¿ Shorten Now!"- ­ƒôØ **Comprehensive Logging** - Detailed request/response logs
+The above copyright notice and this permission notice shall be included in all### CI/CD Pipeline### Web Interface
 
-   - Install dependencies
+copies or substantial portions of the Software.
 
-   - Run tests3. **Copy & Share**: Copy your new short URL
-
-   - Build Docker image
-
-   - Validate code quality4. **Track Analytics**: Access `/url/analytics/{shortId}` for statistics- ­ƒº¬ **RESTful API** - Clean, well-documented endpoints# Access at http://localhost:8001| **Phase 3** | **Configuration Management** | Ansible, Jenkins Setup | Ô£à **COMPLETE** |
+```
 
 
+
+---This project uses **GitHub Actions** for automated deployment to Google Cloud Platform.- ­ƒöì **Health Checks** - Built-in health monitoring endpoint| **Phase 2** | **Infrastructure as Code** | Terraform, AWS (VPC, EKS, ECR, DocumentDB) | Ô£à **COMPLETE** |
+
+
+
+## 🙏 Acknowledgments
+
+
+
+- **Node.js Community** - Amazing runtime#### Pipeline Stages1. **Open the App**: Navigate to `http://localhost:8001`
+
+- **MongoDB** - Flexible database
+
+- **Google Cloud Platform** - Reliable infrastructure
+
+- **GitHub Actions** - Seamless CI/CD
+
+- **Open Source Community** - Inspiration and tools1. **Build & Test** (on every push and PR)2. **Shorten a URL**: Enter any long URL and click "Ô£¿ Shorten Now!"- ­ƒôØ **Comprehensive Logging** - Detailed request/response logs
+
+
+
+---   - Install dependencies
+
+
+
+## 📞 Contact & Support   - Run tests3. **Copy & Share**: Copy your new short URL
+
+
+
+- **Author:** Shikhar Purwar   - Build Docker image
+
+- **GitHub:** [@theshikharpurwar](https://github.com/theshikharpurwar)
+
+- **Repository:** [devops-url-shortener](https://github.com/theshikharpurwar/devops-url-shortener)   - Validate code quality4. **Track Analytics**: Access `/url/analytics/{shortId}` for statistics- ­ƒº¬ **RESTful API** - Clean, well-documented endpoints# Access at http://localhost:8001| **Phase 3** | **Configuration Management** | Ansible, Jenkins Setup | Ô£à **COMPLETE** |
+
+- **Issues:** [Report a bug](https://github.com/theshikharpurwar/devops-url-shortener/issues)
+
+
+
+---
 
 2. **Deploy** (on push to main - including merged PRs)
 
+## ⭐ Show Your Support
+
    - Authenticate to GCP (keyless via Workload Identity)
+
+If you found this project helpful, give it a ⭐️ on GitHub!
 
    - Push image to Google Artifact Registry### Command Line Usage
 
+---
+
    - Deploy to Google Compute Engine
+
+<div align="center">
 
    - Start MongoDB and application containers
 
+**Built with ❤️ using modern DevOps practices**
+
    - Health check verification
+
+**Deployed on Google Cloud Platform**
 
 ```bash---```| **Phase 4** | **CI/CD Pipeline & Deployment** | Jenkins, Kubernetes, AWS EKS | Ô£à **COMPLETE** |
 
+**October 2025**
+
 #### Workflow Triggers
 
+[⬆ Back to Top](#-shorty---url-shortener)
+
 # Create a short URL
+
+</div>
 
 - ✅ **Push to main** - Full build, test, and deploy
 
