@@ -23,9 +23,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 40px 20px;
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
         }
 
         @keyframes gradientShift {
@@ -87,6 +88,8 @@
             position: relative;
             z-index: 10;
             border: 1px solid rgba(255, 255, 255, 0.3);
+            margin: auto;
+            flex-shrink: 0;
         }
 
         .logo-container {
@@ -412,21 +415,62 @@
 
     <script>
         function copyToClipboard(event) {
-            const text = document.getElementById('shortUrlText').innerText;
-            const btn = event.target;
+            // Prevent any default behavior
+            if (event) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
             
-            navigator.clipboard.writeText(text).then(() => {
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '✅ Copied!';
-                btn.classList.add('copied');
-                setTimeout(() => {
-                    btn.innerHTML = originalText;
-                    btn.classList.remove('copied');
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy:', err);
-                alert('Failed to copy to clipboard');
-            });
+            const text = document.getElementById('shortUrlText').innerText;
+            const btn = event ? event.currentTarget : document.querySelector('.copy-btn');
+            
+            // Modern Clipboard API
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '✅ Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Clipboard API failed:', err);
+                    fallbackCopy(text, btn);
+                });
+            } else {
+                // Fallback for older browsers
+                fallbackCopy(text, btn);
+            }
+        }
+        
+        function fallbackCopy(text, btn) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                if (successful) {
+                    const originalText = btn.innerHTML;
+                    btn.innerHTML = '✅ Copied!';
+                    btn.classList.add('copied');
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.classList.remove('copied');
+                    }, 2000);
+                } else {
+                    alert('Failed to copy. Please copy manually: ' + text);
+                }
+            } catch (err) {
+                console.error('Fallback copy failed:', err);
+                alert('Failed to copy. Please copy manually: ' + text);
+            } finally {
+                document.body.removeChild(textArea);
+            }
         }
 
         // Handle form submission with fetch for better UX
