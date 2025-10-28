@@ -383,7 +383,7 @@
             <h3>🎉 Success! Your shortened URL:</h3>
             <div class="short-url">
                 <span class="short-url-text" id="shortUrlText"><%= shortUrl %></span>
-                <button class="copy-btn" onclick="copyToClipboard()">📋 Copy</button>
+                <button class="copy-btn" onclick="copyToClipboard(event)">📋 Copy</button>
             </div>
         </div>
         <% } %>
@@ -411,10 +411,11 @@
     </div>
 
     <script>
-        function copyToClipboard() {
+        function copyToClipboard(event) {
             const text = document.getElementById('shortUrlText').innerText;
+            const btn = event.target;
+            
             navigator.clipboard.writeText(text).then(() => {
-                const btn = event.target;
                 const originalText = btn.innerHTML;
                 btn.innerHTML = '✅ Copied!';
                 btn.classList.add('copied');
@@ -422,6 +423,9 @@
                     btn.innerHTML = originalText;
                     btn.classList.remove('copied');
                 }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy:', err);
+                alert('Failed to copy to clipboard');
             });
         }
 
@@ -472,7 +476,7 @@
                 <h3>🎉 Success! Your shortened URL:</h3>
                 <div class="short-url">
                     <span class="short-url-text" id="shortUrlText">${successUrl}</span>
-                    <button class="copy-btn" onclick="copyToClipboard()">📋 Copy</button>
+                    <button class="copy-btn" onclick="copyToClipboard(event)">📋 Copy</button>
                 </div>
             `;
             form.insertAdjacentElement('afterend', resultDiv);
